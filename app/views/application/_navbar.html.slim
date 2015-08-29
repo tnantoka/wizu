@@ -1,0 +1,14 @@
+nav.navbar.navbar-static-top.navbar-light.bg-faded
+  = link_to t('global.brand'), :dashboard, class: 'navbar-brand'
+  ul.nav.navbar-nav.pull-right
+    li.nav-item.dropdown
+      form.form-inline.navbar-form.pull-right
+        input.form-control type="text" placeholder="#{t('.search')}"
+    li.nav-item.hidden-xs-down
+    li.nav-item.dropdown
+      a.dropdown-toggle.nav-link type="button" data-toggle="dropdown"
+        = image_tag current_user.avatar(24)
+      .dropdown-menu.dropdown-menu-right
+        h6.dropdown-header= current_user.nickname
+        = link_to t('.sign_out'), :sign_out, method: :delete, class: 'dropdown-item'
+

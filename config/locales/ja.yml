@@ -1,0 +1,29 @@
+ja:
+  global:
+    brand: Wizu
+    tagline: Just another Wiki, with you.
+    are_you_sure: Are you sure?
+    please_wait: お待ちください...
+
+  application:
+    navbar:
+      search: 検索
+      sign_out: ログアウト
+  welcome:
+    index:
+      sign_in_with_github: GitHub ログイン
+
+  flash:
+    application:
+      unauthenticated: ログインしてください
+      created: '%{resource_name}は作成されました'
+      updated: '%{resource_name}は更新されました'
+      destroyed: '%{resource_name}は削除されました'
+    sessions:
+      signed_in: ログインしました
+      signed_out: ログアウトしました
+      failed: ログインできませんでした
+ 
+  activerecord:
+    models:
+    attributes:

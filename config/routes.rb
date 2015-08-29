@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  delete '/sign_out', to: 'sessions#destroy'
+  get '/sign_out', to: 'sessions#destroy' if Rails.env.development?
+  get '/auth/failure', to: 'sessions#failure'
+
+  controller :welcome do
+    get :dashboard
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
