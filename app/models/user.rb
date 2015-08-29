@@ -15,6 +15,7 @@
 
 class User < ActiveRecord::Base
   has_one :identity, dependent: :destroy
+  has_many :wikis, dependent: :destroy
 
   validates :nickname, presence: true
 

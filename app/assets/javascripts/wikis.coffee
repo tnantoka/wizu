@@ -1,0 +1,3 @@
+$ ->
+  autosize($('#wiki_content'))
+

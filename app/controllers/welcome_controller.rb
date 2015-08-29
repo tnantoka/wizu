@@ -6,5 +6,6 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
+    @wikis = current_user.wikis.recent
   end
 end

@@ -1,0 +1,19 @@
+= form_for @wiki do |f| 
+  - if @wiki.errors.any? 
+    .alert.alert-danger.alert-dismissible.fade.in
+      button.close type="button" data-dismiss="alert" &times;
+      ul.list-unstyled
+        - @wiki.errors.full_messages.each do |message|
+          li= message 
+
+  fieldset.form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', required: Rails.env.production?, autofocus: true
+  fieldset.form-group
+    = f.label :content
+    = f.text_area :content, class: 'form-control'
+  fieldset.form-group
+    = f.label :slug
+    = f.text_field :slug, class: 'form-control'
+
+  = f.submit class: 'btn btn-primary', data: { disable_with: t('global.please_wait') }

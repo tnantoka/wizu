@@ -1,9 +1,14 @@
 ja:
   global:
     brand: Wizu
-    tagline: Just another Wiki, with you.
+    tagline: Just another Wiki with Markdown.
     are_you_sure: Are you sure?
     please_wait: お待ちください...
+    new_wiki: Wiki を作成
+    new_page: ページを作成
+    edit: 編集
+    delete: 削除
+    time_ago: '%{time}前'
 
   application:
     navbar:
@@ -12,6 +17,9 @@ ja:
   welcome:
     index:
       sign_in_with_github: GitHub ログイン
+    dashboard:
+      no_wiki_found: まだWiki はありません
+      last_updated: 最終更新日時
 
   flash:
     application:
@@ -26,4 +34,10 @@ ja:
  
   activerecord:
     models:
+      wiki: Wiki
     attributes:
+      wiki:
+        title: タイトル
+        content: 概要
+        slug: スラッグ
+

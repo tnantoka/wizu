@@ -23,20 +23,41 @@ class Page < ActiveRecord::Base
 
   validates :title, presence: true
   validates :content, presence: true, if: :content_required?
+  validates :slug, uniqueness: { case_sensitive: false }, allow_blank: true
 
   before_save :set_slug, if: 'slug.blank?'
 
   scope :recent, -> { order(updated_at: :desc) }
 
-  private
-    def set_slug
-      begin
-        slug = SecureRandom.urlsafe_base64(10)
-      end while self.class.exists?(slug: slug)
-      self.slug = slug
-    end
+  def to_param
+    slug
+  end
 
+  def render
+    processor = Qiita::Markdown::Processor.new
+    output_html(processor)
+  end
+
+  def summary(length)
+    processor = Qiita::Markdown::SummaryProcessor.new(truncate: { length: length })
+    output_html(processor)
+  end
+
+  def set_slug
+    begin
+      slug = SecureRandom.urlsafe_base64(10)
+    end while self.class.exists?(slug: slug)
+    self.slug = slug
+  end
+
+  private
     def content_required?
       true
+    end
+
+    def output_html(processor)
+      processed = processor.call(content.to_s)
+      fragment = processed[:output]
+      fragment.to_html.html_safe
     end
 end

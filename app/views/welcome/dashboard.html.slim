@@ -1,0 +1,22 @@
+- if @wikis.exists?
+  - @wikis.each_slice(4) do |wikis|
+    .row
+      - wikis.each do |wiki|
+        .col-sm-3
+          .card
+            .card-block
+              h4.card-title= link_to wiki.title, wiki
+              p.card-text.markdown-body= wiki.summary(80).presence || '&nbsp;'.html_safe
+              p.card-text
+                small.text-muted
+                  = t('.last_updated')
+                  =< time_ago(wiki.updated_at)
+              p.card-text
+                = link_to t('global.new_page'), '#', class: 'card-link'
+
+- else
+  .card.card-block
+    h4.card-title= t('.no_wiki_found')
+    p.card-text
+      = link_to t('global.new_wiki'), :new_wiki, class: 'card-link'
+

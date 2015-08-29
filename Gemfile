@@ -62,13 +62,17 @@ group :production do
   gem 'exception_notification'
 end
 
+gem 'jquery-turbolinks'
 gem 'slim-rails'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'omniauth-github'
+gem 'qiita-markdown'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.alpha'
   gem 'rails-assets-font-awesome-bower'
+  gem 'rails-assets-github-markdown-css'
+  gem 'rails-assets-autosize'
 end
 

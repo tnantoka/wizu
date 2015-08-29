@@ -1,9 +1,14 @@
 en:
   global:
     brand: Wizu
-    tagline: Just another Wiki, with you.
+    tagline: Just another Wiki with Markdown.
     are_you_sure: Are you sure?
     please_wait: Please wait...
+    new_wiki: New wiki
+    new_page: New page
+    edit: Edit
+    delete: Delete
+    time_ago: '%{time} ago'
 
   application:
     navbar:
@@ -12,6 +17,9 @@ en:
   welcome:
     index:
       sign_in_with_github: Sign in with GitHub
+    dashboard:
+      no_wiki_found: No wiki found.
+      last_updated: Last updated
 
   flash:
     application:
@@ -26,4 +34,11 @@ en:
 
   activerecord:
     models:
+      wiki: Wiki
     attributes:
+      wiki:
+        title: Title
+        content: Description
+        slug: Slug
+
+

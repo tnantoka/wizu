@@ -34,10 +34,14 @@ RSpec.describe WelcomeController, type: :controller do
   describe '#dashboard' do
     context 'when signed in' do
       before do
+        create_list(:wiki, 5, user: user)
         get :dashboard, nil, user_id: user.id
       end
       it 'returns http success' do
         expect(response).to have_http_status(:success)
+      end
+      it 'assings wikis' do
+        expect(assigns[:wikis]).to eq(user.wikis.recent)
       end
     end
     context 'when signed out' do
