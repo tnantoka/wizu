@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829034312) do
+ActiveRecord::Schema.define(version: 20150829055822) do
 
   create_table "identities", force: :cascade do |t|
     t.string   "uid",        limit: 255,   null: false
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20150829034312) do
   add_index "identities", ["uid", "provider"], name: "index_identities_on_uid_and_provider", unique: true, using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "pages", force: :cascade do |t|
+    t.string   "title",      limit: 255,   null: false
+    t.text     "content",    limit: 65535, null: false
+    t.string   "slug",       limit: 255,   null: false
+    t.integer  "parent_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "pages", ["parent_id"], name: "index_pages_on_parent_id", using: :btree
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "nickname",   limit: 255,   null: false
     t.text     "image",      limit: 65535, null: false
@@ -35,4 +49,5 @@ ActiveRecord::Schema.define(version: 20150829034312) do
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
 
   add_foreign_key "identities", "users"
+  add_foreign_key "pages", "users"
 end
