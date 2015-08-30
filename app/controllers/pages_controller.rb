@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_wiki, only: %i(new create)
-  before_action :set_page, only: %i(show edit update destroy)
+  before_action :set_page, only: %i(show edit update destroy histories)
 
   def show
     redirect_to wiki_path(@page) and return if @page.wiki?
@@ -42,6 +42,10 @@ class PagesController < ApplicationController
   def preview
     page = Page.new(page_params)
     render json: { html: page.render }
+  end
+
+  def histories
+    @versions = @page.versions.reorder(created_at: :desc).includes(:item).page(params[:page]).per(5)
   end
 
   private

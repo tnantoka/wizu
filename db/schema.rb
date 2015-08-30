@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829055822) do
+ActiveRecord::Schema.define(version: 20150830124543) do
 
   create_table "identities", force: :cascade do |t|
     t.string   "uid",        limit: 255,   null: false
@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20150829055822) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title",      limit: 255,                   null: false
-    t.text     "content",    limit: 65535,                 null: false
-    t.string   "slug",       limit: 255,                   null: false
+    t.string   "title",      limit: 255,                      null: false
+    t.text     "content",    limit: 16777215
+    t.string   "slug",       limit: 255,                      null: false
     t.string   "ancestry",   limit: 255
-    t.boolean  "wiki",                     default: false, null: false
+    t.boolean  "wiki",                        default: false, null: false
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "pages", ["ancestry"], name: "index_pages_on_ancestry", using: :btree
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20150829055822) do
   end
 
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  limit: 255,        null: false
+    t.integer  "item_id",    limit: 4,          null: false
+    t.string   "event",      limit: 255,        null: false
+    t.string   "whodunnit",  limit: 255
+    t.text     "object",     limit: 4294967295
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "identities", "users"
   add_foreign_key "pages", "users"

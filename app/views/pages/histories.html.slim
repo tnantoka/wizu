@@ -1,0 +1,31 @@
+= render 'breadcrumb', page: @page
+
+- last_page = @page
+- @versions.each do |version|
+  - user = User.find_by(version.whodunnit)
+  .card
+    .card-header
+      ul.list-inline.m-b-0
+        li
+          span.label.label-default= t(".#{version.event}")
+        li= time_ago(version.created_at)
+        li
+          = image_tag user.try(:avatar, 24)
+          =< user.try(:nickname)
+    .card-block
+      .row
+        .col-sm-6
+          = last_page.title
+        .col-sm-6
+          = diff(version.reify.try(:title), last_page.title)
+    hr.m-a-0
+    .card-block
+      .row
+        .col-sm-6
+          .markdown-body= last_page.render
+        .col-sm-6
+          = diff(version.reify.try(:content), last_page.content)
+  - last_page = version.reify
+
+= paginate @versions
+

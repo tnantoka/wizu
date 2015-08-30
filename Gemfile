@@ -69,6 +69,10 @@ gem 'dotenv-rails'
 gem 'omniauth-github'
 gem 'qiita-markdown'
 gem 'ancestry'
+gem 'paper_trail'
+gem 'kaminari'
+gem 'kaminari-i18n'
+gem 'diffy'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.alpha'

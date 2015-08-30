@@ -26,7 +26,7 @@ RSpec.describe WikisController, type: :controller do
   describe '#create' do
     context 'with valid params' do
       before do
-        post :create, { wiki: { title: 'title', content: '' } }, user_id: user.id
+        post :create, { wiki: { title: 'title' } }, user_id: user.id
       end
       it 'creates wiki' do
         expect(user.wikis.last.title).to eq('title')

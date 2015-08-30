@@ -1,10 +1,4 @@
-ol.breadcrumb.clean-background
-  - page.ancestors.each do |p|
-    li
-      = link_to p.title, (p.wiki? ? wiki_path(p) : p) 
-  li.active= page.title
-  li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))
-
+= render 'pages/breadcrumb', page: page
 .card
   .card-header
     .btn-group.btn-group-sm.pull-right
@@ -13,6 +7,7 @@ ol.breadcrumb.clean-background
         button type="button" class="btn btn-secondary" data-toggle="dropdown"
           = icon('caret-down')
         .dropdown-menu.dropdown-menu-right
+          = link_to t('global.histories'), histories_page_path(page), class: 'dropdown-item'
           .dropdown-divider
           = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
             data: { confirm: t('global.are_you_sure') }

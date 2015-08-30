@@ -27,7 +27,7 @@ RSpec.describe PagesController, type: :controller do
   describe '#create' do
     context 'with valid params' do
       before do
-        post :create, { wiki_id: wiki.to_param, page: { title: 'title', content: '', parent_id: wiki.id } }, user_id: user.id
+        post :create, { wiki_id: wiki.to_param, page: { title: 'title', parent_id: wiki.id } }, user_id: user.id
       end
       it 'creates page' do
         expect(wiki.pages.last.title).to eq('title')
@@ -41,7 +41,7 @@ RSpec.describe PagesController, type: :controller do
     end
     context 'with invalid params' do
       before do
-        post :create, { wiki_id: wiki.to_param, page: { title: '', content: '', parent_id: wiki.id } }, user_id: user.id
+        post :create, { wiki_id: wiki.to_param, page: { title: '', parent_id: wiki.id } }, user_id: user.id
       end
       it 'does not create page' do
         expect(wiki.pages.last).to eq(nil)
@@ -116,4 +116,15 @@ RSpec.describe PagesController, type: :controller do
       expect(json['html']).to eq("<p><a href=\"url\">link</a></p>\n")
     end
   end
+
+  describe '#histories' do
+    before do
+      get :histories, { id: page.to_param }, user_id: user.id
+    end
+    it 'renders histories' do
+      expect(response).to render_template('pages/histories')
+    end
+  end
+
+
 end

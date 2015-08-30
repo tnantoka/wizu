@@ -9,6 +9,7 @@ en:
     edit: Edit
     delete: Delete
     time_ago: '%{time} ago'
+    histories: Histories
 
   application:
     navbar:
@@ -20,6 +21,10 @@ en:
     dashboard:
       no_wiki_found: No wiki found.
       last_updated: Last updated
+  pages:
+    histories:
+      create: Create
+      update: Update
 
   flash:
     application:

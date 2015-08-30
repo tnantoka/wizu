@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)      not null
-#  content    :text(65535)      not null
+#  content    :text(16777215)
 #  slug       :string(255)      not null
 #  ancestry   :string(255)
 #  wiki       :boolean          default(FALSE), not null

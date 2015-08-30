@@ -14,6 +14,7 @@
  *= require font-awesome-bower
  *= require github-markdown-css
  *= require select2
+ *= require diffy
  *= require_tree .
  *= require_self
  */

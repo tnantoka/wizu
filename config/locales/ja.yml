@@ -9,6 +9,7 @@ ja:
     edit: 編集
     delete: 削除
     time_ago: '%{time}前'
+    histories: 編集履歴
 
   application:
     navbar:
@@ -20,6 +21,10 @@ ja:
     dashboard:
       no_wiki_found: まだWiki はありません
       last_updated: 最終更新日時
+  pages:
+    histories:
+      create: 作成
+      update: 更新
 
   flash:
     application:

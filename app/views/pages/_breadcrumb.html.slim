@@ -1,0 +1,11 @@
+ol.breadcrumb.clean-background
+  - page.ancestors.each do |p|
+    li= link_to p.title, (p.wiki? ? wiki_path(p) : p) 
+  - case action_name
+  - when 'histories'
+    li= link_to page.title, page
+    li.active= t('global.histories')
+  - else
+    li.active= page.title
+    li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))
+
