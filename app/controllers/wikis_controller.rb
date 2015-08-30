@@ -2,6 +2,9 @@ class WikisController < ApplicationController
   before_action :authenticate_user!
   before_action :set_wiki, only: %i(show edit update destroy)
 
+  def show
+  end
+
   def new
     @wiki = Wiki.new
     @wiki.set_slug
@@ -14,9 +17,6 @@ class WikisController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
@@ -38,9 +38,5 @@ class WikisController < ApplicationController
   private
     def wiki_params
       params.require(:wiki).permit(:title, :content, :slug)
-    end
-
-    def set_wiki
-      @wiki = Wiki.find_by!(slug: params[:id])
     end
 end

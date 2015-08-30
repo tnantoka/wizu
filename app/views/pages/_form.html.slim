@@ -1,0 +1,19 @@
+= form_for (@page.new_record? ? [@wiki, @page] : @page) do |f| 
+  = render 'errors', model: @page
+  fieldset.form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.blank?
+  fieldset.form-group
+    = f.label :parent_id
+    = f.select :parent_id, @wiki.subtree.map { |p| [p.tree, p.id] }, {}, class: 'form-control'
+  fieldset.form-group
+    = f.label :content
+    .row
+      .col-sm-6
+        = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?
+      .col-sm-6
+        .card
+          .card-block
+            .markdown-body.js-preview
+
+  = f.submit class: 'btn btn-primary', data: { disable_with: t('global.please_wait') }

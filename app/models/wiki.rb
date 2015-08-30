@@ -6,23 +6,23 @@
 #  title      :string(255)      not null
 #  content    :text(65535)      not null
 #  slug       :string(255)      not null
-#  parent_id  :integer
+#  ancestry   :string(255)
+#  wiki       :boolean          default(FALSE), not null
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_pages_on_parent_id  (parent_id)
-#  index_pages_on_slug       (slug) UNIQUE
-#  index_pages_on_user_id    (user_id)
+#  index_pages_on_ancestry  (ancestry)
+#  index_pages_on_slug      (slug) UNIQUE
+#  index_pages_on_user_id   (user_id)
 #
 
 class Wiki < Page
-  default_scope -> { where(parent_id: nil) }
+  default_scope -> { where(wiki: true) }
 
-  private
-    def content_required?
-      false
-    end
+  def pages
+    descendants
+  end
 end

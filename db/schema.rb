@@ -26,16 +26,17 @@ ActiveRecord::Schema.define(version: 20150829055822) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title",      limit: 255,   null: false
-    t.text     "content",    limit: 65535, null: false
-    t.string   "slug",       limit: 255,   null: false
-    t.integer  "parent_id",  limit: 4
+    t.string   "title",      limit: 255,                   null: false
+    t.text     "content",    limit: 65535,                 null: false
+    t.string   "slug",       limit: 255,                   null: false
+    t.string   "ancestry",   limit: 255
+    t.boolean  "wiki",                     default: false, null: false
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
-  add_index "pages", ["parent_id"], name: "index_pages_on_parent_id", using: :btree
+  add_index "pages", ["ancestry"], name: "index_pages_on_ancestry", using: :btree
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 

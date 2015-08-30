@@ -37,6 +37,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -170,6 +172,8 @@ GEM
     rails-assets-font-awesome-bower (4.4.0)
     rails-assets-github-markdown-css (2.0.9)
     rails-assets-jquery (2.1.4)
+    rails-assets-select2 (4.0.0)
+    rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -267,6 +271,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
   annotate
   bullet
   byebug
@@ -286,6 +291,8 @@ DEPENDENCIES
   rails-assets-bootstrap (= 4.0.0.alpha)!
   rails-assets-font-awesome-bower!
   rails-assets-github-markdown-css!
+  rails-assets-select2!
+  rails-assets-underscore!
   rails-i18n
   rb-readline
   rspec-rails

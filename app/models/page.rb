@@ -6,28 +6,30 @@
 #  title      :string(255)      not null
 #  content    :text(65535)      not null
 #  slug       :string(255)      not null
-#  parent_id  :integer
+#  ancestry   :string(255)
+#  wiki       :boolean          default(FALSE), not null
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_pages_on_parent_id  (parent_id)
-#  index_pages_on_slug       (slug) UNIQUE
-#  index_pages_on_user_id    (user_id)
+#  index_pages_on_ancestry  (ancestry)
+#  index_pages_on_slug      (slug) UNIQUE
+#  index_pages_on_user_id   (user_id)
 #
 
 class Page < ActiveRecord::Base
   belongs_to :user
 
   validates :title, presence: true
-  validates :content, presence: true, if: :content_required?
   validates :slug, uniqueness: { case_sensitive: false }, allow_blank: true
 
   before_save :set_slug, if: 'slug.blank?'
 
   scope :recent, -> { order(updated_at: :desc) }
+
+  has_ancestry
 
   def to_param
     slug
@@ -50,11 +52,11 @@ class Page < ActiveRecord::Base
     self.slug = slug
   end
 
-  private
-    def content_required?
-      true
-    end
+  def tree(separator = ' / ')
+    path.map { |p| p.title }.join(separator)
+  end
 
+  private
     def output_html(processor)
       processed = processor.call(content.to_s)
       fragment = processed[:output]

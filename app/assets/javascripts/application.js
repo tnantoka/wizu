@@ -16,4 +16,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require autosize
+//= require select2
+//= require underscore 
 //= require_tree .

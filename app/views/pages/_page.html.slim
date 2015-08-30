@@ -1,0 +1,25 @@
+ol.breadcrumb.clean-background
+  - page.ancestors.each do |p|
+    li
+      = link_to p.title, (p.wiki? ? wiki_path(p) : p) 
+  li.active= page.title
+  li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))
+
+.card
+  .card-header
+    .btn-group.btn-group-sm.pull-right
+      = link_to t('global.edit'), (page.wiki? ? edit_wiki_path(page) : edit_page_path(page)), class: 'btn btn-secondary'
+      .btn-group.btn-group-sm
+        button type="button" class="btn btn-secondary" data-toggle="dropdown"
+          = icon('caret-down')
+        .dropdown-menu.dropdown-menu-right
+          .dropdown-divider
+          = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
+            data: { confirm: t('global.are_you_sure') }
+    = page.title
+  .card-block
+    .markdown-body= page.render
+  - if page.children.exists?
+    .list-group.list-group-flush
+      - page.children.each do |page|
+        = link_to page.title, page, class: 'list-group-item'

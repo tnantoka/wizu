@@ -32,3 +32,10 @@
     display: none;
   }
 }
+
+// Select2
+
+.select2-container--open .select2-dropdown--above,
+.select2-container--default .select2-selection--single {
+  border-radius: 0;
+}

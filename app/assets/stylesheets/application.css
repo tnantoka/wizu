@@ -13,6 +13,7 @@
  *= require bootstrap
  *= require font-awesome-bower
  *= require github-markdown-css
+ *= require select2
  *= require_tree .
  *= require_self
  */

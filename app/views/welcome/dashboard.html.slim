@@ -12,7 +12,7 @@
                   = t('.last_updated')
                   =< time_ago(wiki.updated_at)
               p.card-text
-                = link_to t('global.new_page'), '#', class: 'card-link'
+                = link_to t('global.new_page'), new_wiki_page_path(wiki), class: 'card-link'
 
 - else
   .card.card-block

@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   private
+    def set_wiki
+      @wiki = Wiki.find_by!(slug: params[:wiki_id].presence || params[:id])
+    end
+    
     # Locale
     def set_locale
       locale = available_locale(extract_locale_from_params)

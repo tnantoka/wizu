@@ -1,7 +1,7 @@
 en:
   global:
     brand: Wizu
-    tagline: Just another Wiki with Markdown.
+    tagline: Just another personal Wiki with Markdown.
     are_you_sure: Are you sure?
     please_wait: Please wait...
     new_wiki: New wiki
@@ -40,5 +40,9 @@ en:
         title: Title
         content: Description
         slug: Slug
+      page:
+        title: Title
+        content: Content
+        parent_id: Parent
 
 

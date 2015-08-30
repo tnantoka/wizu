@@ -1,8 +1,8 @@
 ja:
   global:
     brand: Wizu
-    tagline: Just another Wiki with Markdown.
-    are_you_sure: Are you sure?
+    tagline: Just another personal Wiki with Markdown.
+    are_you_sure: よろしいですか？
     please_wait: お待ちください...
     new_wiki: Wiki を作成
     new_page: ページを作成
@@ -35,9 +35,15 @@ ja:
   activerecord:
     models:
       wiki: Wiki
+      page: ページ
     attributes:
       wiki:
         title: タイトル
         content: 概要
         slug: スラッグ
+      page:
+        title: タイトル
+        content: 本文
+        parent_id: 親ページ
+
 

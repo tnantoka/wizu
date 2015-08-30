@@ -5,6 +5,15 @@ RSpec.describe WikisController, type: :controller do
   let(:user) { create(:user) }
   let(:wiki) { create(:wiki, user: user) }
 
+  describe '#show' do
+    before do
+      get :show, { id: wiki.to_param }, user_id: user.id
+    end
+    it 'renders show' do
+      expect(response).to render_template('wikis/show')
+    end
+  end
+
   describe '#new' do
     before do
       get :new, nil, user_id: user.id
@@ -46,7 +55,6 @@ RSpec.describe WikisController, type: :controller do
   end
 
   describe '#edit' do
-    let(:wiki) { create(:wiki, user: user) }
     before do
       get :edit, { id: wiki.to_param }, user_id: user.id
     end
@@ -95,15 +103,6 @@ RSpec.describe WikisController, type: :controller do
     end
     it 'redirects to dashboard' do
       expect(response).to redirect_to(:dashboard)
-    end
-  end
-
-  describe '#show' do
-    before do
-      get :show, { id: wiki.to_param }, user_id: user.id
-    end
-    it 'renders show' do
-      expect(response).to render_template('wikis/show')
     end
   end
 end

@@ -10,7 +10,14 @@ Rails.application.routes.draw do
     get :dashboard
   end
 
-  resources :wikis
+  resources :wikis, path: 'w', shallow: true, except: %i(index) do
+    resources :pages, path: 'p', except: %i(index) do
+    end
+  end
+
+  resources :pages, path: 'p', only: [] do
+    post :preview, on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

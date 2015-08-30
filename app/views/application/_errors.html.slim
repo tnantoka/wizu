@@ -1,0 +1,8 @@
+- if model.errors.any? 
+  .alert.alert-danger.alert-dismissible.fade.in
+    button.close type="button" data-dismiss="alert" &times;
+    ul.list-unstyled
+      - model.errors.full_messages.each do |message|
+        li= message 
+
+

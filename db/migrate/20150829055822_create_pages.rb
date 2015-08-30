@@ -4,12 +4,13 @@ class CreatePages < ActiveRecord::Migration
       t.string :title, null: false
       t.text :content, null: false
       t.string :slug, null: false
-      t.integer :parent_id
+      t.string :ancestry
+      t.boolean :wiki, null: false, default: false
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end
-    add_index :pages, :parent_id
+    add_index :pages, :ancestry
     add_index :pages, :slug, unique: true
   end
 end
