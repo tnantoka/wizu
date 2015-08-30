@@ -1,0 +1,7 @@
+li
+  = link_to page.title, page
+  - if page.children.exists?
+    ul
+      - page.children.each do |p|
+        = render 'subtree', page: p
+

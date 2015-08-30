@@ -105,4 +105,13 @@ RSpec.describe WikisController, type: :controller do
       expect(response).to redirect_to(:dashboard)
     end
   end
+
+  describe '#tree' do
+    before do
+      get :tree, { id: wiki.to_param }, user_id: user.id
+    end
+    it 'renders tree' do
+      expect(response).to render_template('wikis/tree')
+    end
+  end
 end

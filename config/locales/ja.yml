@@ -10,6 +10,7 @@ ja:
     delete: 削除
     time_ago: '%{time}前'
     histories: 編集履歴
+    tree_view: ツリー表示
 
   application:
     navbar:

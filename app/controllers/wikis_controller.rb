@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wiki, only: %i(show edit update destroy)
+  before_action :set_wiki, only: %i(show edit update destroy tree)
 
   def show
   end
@@ -33,6 +33,9 @@ class WikisController < ApplicationController
   def destroy
     @wiki.destroy!
     redirect_to :dashboard, notice: t('flash.application.destroyed', resource_name: Wiki.model_name.human)
+  end
+
+  def tree
   end
 
   private

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
 
   resources :wikis, path: 'w', shallow: true, except: %i(index) do
+    member do
+      get :tree
+    end
     resources :pages, path: 'p', except: %i(index) do
       member do
         get :histories

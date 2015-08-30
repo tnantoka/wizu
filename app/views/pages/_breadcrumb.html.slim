@@ -5,6 +5,9 @@ ol.breadcrumb.clean-background
   - when 'histories'
     li= link_to page.title, page
     li.active= t('global.histories')
+  - when 'tree'
+    li= link_to page.title, page
+    li.active= t('global.tree_view')
   - else
     li.active= page.title
     li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))

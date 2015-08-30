@@ -10,6 +10,7 @@ en:
     delete: Delete
     time_ago: '%{time} ago'
     histories: Histories
+    tree_view: Tree view
 
   application:
     navbar:
