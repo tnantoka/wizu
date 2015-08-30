@@ -29,7 +29,7 @@ class Page < ActiveRecord::Base
 
   scope :recent, -> { order(updated_at: :desc) }
 
-  has_ancestry
+  has_ancestry touch: true
   has_paper_trail
 
   def to_param
