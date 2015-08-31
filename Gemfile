@@ -68,6 +68,7 @@ group :production do
   gem 'exception_notification'
   gem 'unicorn'
   gem 'newrelic_rpm'
+  gem 'therubyracer', platforms: :ruby
 end
 
 gem 'jquery-turbolinks'
