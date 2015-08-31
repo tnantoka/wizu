@@ -28,7 +28,7 @@
         .js-content-container[
           data-attachments-path="#{wiki_attachments_path(@wiki)}"
           data-page-id="#{@page.try(:id).presence || @wiki.id}"]
-          = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?,
+          = f.text_area :content, class: 'form-control', autofocus: @page.title.present?,
             data: { preview_path: preview_pages_path }
       .col-sm-6
         .card
