@@ -1,5 +1,6 @@
 class PagesController
   constructor: ->
+    @edited = false
 
   init: ->
     @$content = $('#page_content')
@@ -70,6 +71,9 @@ class PagesController
       end = @$content.selection('getPos').end + pos
       @$content.selection('setPos', { start: end, end: end })
 
+   edit: ->
+     @edited = true
+
 controller = new PagesController()
 
 $ ->
@@ -78,6 +82,9 @@ $ ->
 $(document).on 'keyup', '#page_content', _.throttle ->
   controller.preview()
 , 1000
+
+$(document).on 'keyup', '#page_title, #page_content, #wiki_title, #wiki_content, #wiki_slug', ->
+  controller.edit()
 
 $(document).on 'click', '.js-insert', (e) ->
   e.preventDefault()
@@ -90,4 +97,8 @@ $(document).on 'click', '.js-insert', (e) ->
 
 $(document).on 'click', '.js-upload', (e) ->
   e.preventDefault()
+
+$(window).on 'beforeunload', ->
+  if controller.edited
+    ' '
 

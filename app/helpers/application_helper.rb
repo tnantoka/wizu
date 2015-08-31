@@ -10,4 +10,11 @@ module ApplicationHelper
   def diff(string1, string2)
     Diffy::Diff.new(string1.to_s, string2.to_s, include_plus_and_minus_in_html: true).to_s(:html).html_safe
   end
+
+  def title_tag
+    titles = [t('global.brand')]
+    titles.insert(0, @wiki.title) if @wiki.present?
+    titles.insert(0, @page.title) if @page.present?
+    titles.join(' - ')
+  end
 end
