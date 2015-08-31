@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/tnantoka/wizu/badges/gpa.svg)](https://codeclimate.com/github/tnantoka/wizu)
 [![Test Coverage](https://codeclimate.com/github/tnantoka/wizu/badges/coverage.svg)](https://codeclimate.com/github/tnantoka/wizu/coverage)
 
-Just another personal wiki with Markdown. Powered by Rails and Bootstrap 4.
+Just another personal Wiki with Markdown. Powered by Rails and Bootstrap 4.
 http://wizu.tnantoka.com/
 
 ## Requirement
