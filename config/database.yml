@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: wizu_production
-  username: wizu
+  username: <%= ENV['WIZU_DATABASE_USERNAME'] %>
   password: <%= ENV['WIZU_DATABASE_PASSWORD'] %>
+  host: <%= ENV['WIZU_DATABASE_HOST'] %>
