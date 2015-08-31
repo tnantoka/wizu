@@ -1,9 +1,9 @@
 class PagesController
   constructor: ->
-    @edited = false
 
   init: ->
     @$content = $('#page_content')
+    @edited = false
 
     @preview()
 

@@ -22,4 +22,5 @@
 //= require jquery.selection/src/jquery.selection
 //= require mousetrap
 //= require mousetrap/plugins/global-bind/mousetrap-global-bind
+//= require esarea/src/js/esarea
 //= require_tree .
