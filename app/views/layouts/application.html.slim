@@ -11,8 +11,10 @@ html
   body
     - if user_signed_in?
       = render 'navbar'
+      = render 'flash'
       .container-fluid
         .m-b= yield
     - else
+      = render 'flash'
       = yield
 

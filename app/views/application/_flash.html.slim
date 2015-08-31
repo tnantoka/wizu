@@ -1,0 +1,10 @@
+- if flash[:notice].present? || flash[:alert].present?
+  .container-fluid
+    - if flash[:notice].present?
+      .alert.alert-success.alert-dismissible.fade.in
+        button.close type="button" data-dismiss="alert" &times;
+        = flash[:notice]
+    - if flash[:alert].present?
+      .alert.alert-danger.alert-dismissible.fade.in
+        button.close type="button" data-dismiss="alert" &times;
+        = flash[:alert]
