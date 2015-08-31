@@ -60,6 +60,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production do
@@ -91,7 +92,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-select2'
   gem 'rails-assets-underscore'
   gem 'rails-assets-dropzone'
-  gem 'rails-assets-jquery.selection'
   gem 'rails-assets-jquery.selection'
   gem 'rails-assets-mousetrap'
 end
