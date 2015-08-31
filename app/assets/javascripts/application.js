@@ -20,4 +20,6 @@
 //= require underscore 
 //= require dropzone
 //= require jquery.selection/src/jquery.selection
+//= require mousetrap
+//= require mousetrap/plugins/global-bind/mousetrap-global-bind
 //= require_tree .

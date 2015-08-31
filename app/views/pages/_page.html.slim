@@ -2,7 +2,8 @@
 .card
   .card-header
     .btn-group.btn-group-sm.pull-right
-      = link_to t('global.edit'), (page.wiki? ? edit_wiki_path(page) : edit_page_path(page)), class: 'btn btn-secondary'
+      = link_to t('global.edit'), (page.wiki? ? edit_wiki_path(page) : edit_page_path(page)),
+        class: 'btn btn-secondary js-edit-page', title: 'e'
       .btn-group.btn-group-sm
         button type="button" class="btn btn-secondary" data-toggle="dropdown"
           = icon('caret-down')

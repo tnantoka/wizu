@@ -197,6 +197,7 @@ GEM
     rails-assets-github-markdown-css (2.0.9)
     rails-assets-jquery (2.1.4)
     rails-assets-jquery.selection (1.0.1)
+    rails-assets-mousetrap (1.5.3)
     rails-assets-select2 (4.0.0)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
@@ -325,6 +326,7 @@ DEPENDENCIES
   rails-assets-font-awesome-bower!
   rails-assets-github-markdown-css!
   rails-assets-jquery.selection!
+  rails-assets-mousetrap!
   rails-assets-select2!
   rails-assets-underscore!
   rails-i18n

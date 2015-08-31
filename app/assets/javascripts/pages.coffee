@@ -1,8 +1,10 @@
 $ ->
+  preview()
   autosize($('#page_content'))
   $('#page_parent_id').select2()
   initDropzone()
-  preview()
+  initMousetrap()
+  $('[data-toggle=tooltip]').tooltip()
 
 initDropzone = ->
   $container = $('.js-content-container')
@@ -22,7 +24,17 @@ initDropzone = ->
       insert(text)
       preview()
 
-preview = _.throttle (e) ->
+initMousetrap = ->
+  Mousetrap.bind 'e', ->
+    Turbolinks.visit $('.js-edit-page').prop('href')
+
+  Mousetrap.bindGlobal 'mod+s', (e) ->
+    if /wiki_title|wiki_content|wiki_slug|page_title|page_content/.test(e.target.id)
+      console.log('hoge', )
+      e.preventDefault()
+      $('.js-submit-page').click()
+
+preview = (e) ->
   $content = $('#page_content')
   return unless $content.length
 
@@ -41,8 +53,6 @@ preview = _.throttle (e) ->
       console.error(jqXHR, textStatus, errorThrown)
       alert(errorThrown)
 
-, 1000
-
 insert = (text, mode = 'before') ->
   $content = $('#page_content')
   $content
@@ -54,7 +64,9 @@ insert = (text, mode = 'before') ->
 
   preview()
 
-$(document).on 'keyup', '#page_content', preview
+$(document).on 'keyup', '#page_content', _.throttle ->
+  preview()
+, 1000
 
 $(document).on 'click', '.js-insert', (e) ->
   e.preventDefault()
