@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         get :histories
       end
     end
+    resources :attachments, path: 'a', except: %i(new edit update)
   end
 
   resources :pages, path: 'p', only: [] do

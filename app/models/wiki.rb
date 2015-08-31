@@ -25,4 +25,8 @@ class Wiki < Page
   def pages
     descendants
   end
+
+  def attachments
+    Attachment.where(page_id: subtree_ids)
+  end
 end

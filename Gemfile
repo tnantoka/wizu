@@ -73,6 +73,7 @@ gem 'paper_trail'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'diffy'
+gem 'paperclip'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.alpha'
@@ -81,5 +82,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-autosize'
   gem 'rails-assets-select2'
   gem 'rails-assets-underscore'
+  gem 'rails-assets-dropzone'
+  gem 'rails-assets-jquery.selection'
 end
 

@@ -11,6 +11,7 @@ ja:
     time_ago: '%{time}前'
     histories: 編集履歴
     tree_view: ツリー表示
+    attachments: ファイル
 
   application:
     navbar:
@@ -26,6 +27,11 @@ ja:
     histories:
       create: 作成
       update: 更新
+  attachments:
+    index:
+      file_name: ファイル名
+      pages: ページ
+      action: 操作
 
   flash:
     application:
@@ -42,6 +48,7 @@ ja:
     models:
       wiki: Wiki
       page: ページ
+      attachment: ファイル
     attributes:
       wiki:
         title: タイトル

@@ -11,6 +11,7 @@ en:
     time_ago: '%{time} ago'
     histories: Histories
     tree_view: Tree view
+    attachments: Attachments
 
   application:
     navbar:
@@ -26,6 +27,11 @@ en:
     histories:
       create: Create
       update: Update
+  attachments:
+    index:
+      file_name: File name
+      pages: Pages
+      action: Action
 
   flash:
     application:
@@ -41,6 +47,8 @@ en:
   activerecord:
     models:
       wiki: Wiki
+      page: Page
+      attachment: Attachment
     attributes:
       wiki:
         title: Title

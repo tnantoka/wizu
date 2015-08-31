@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830124543) do
+ActiveRecord::Schema.define(version: 20150830144947) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "slug",              limit: 255, null: false
+    t.integer  "page_id",           limit: 4
+    t.integer  "user_id",           limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "data_file_name",    limit: 255
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.datetime "data_updated_at"
+  end
+
+  add_index "attachments", ["page_id"], name: "index_attachments_on_page_id", using: :btree
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.string   "uid",        limit: 255,   null: false
@@ -60,6 +75,8 @@ ActiveRecord::Schema.define(version: 20150830124543) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "attachments", "pages"
+  add_foreign_key "attachments", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "pages", "users"
 end

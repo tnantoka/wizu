@@ -8,12 +8,31 @@
     = f.select :parent_id, @wiki.subtree.map { |p| [p.tree, p.id] }, {}, class: 'form-control'
   fieldset.form-group
     = f.label :content
+    .btn-toolbar.m-b
+      .btn-group.btn-group-sm
+        a.btn.btn-secondary.js-insert href="#" data-text="# " H1
+        a.btn.btn-secondary.js-insert href="#" data-text="## " H2
+        a.btn.btn-secondary.js-insert href="#" data-text="### " H3
+        a.btn.btn-secondary.js-insert href="#" data-text="#### " H4
+        a.btn.btn-secondary.js-insert href="#" data-text="##### " H5
+        a.btn.btn-secondary.js-insert href="#" data-text="###### " H6
+      .btn-group.btn-group-sm
+        a.btn.btn-secondary.js-insert href="#" data-text="[]()" data-pos="-3"= icon('link')
+        a.btn.btn-secondary.js-insert href="#" data-text="![]()" data-pos="-1"= icon('image')
+        a.btn.btn-secondary.js-insert href="#" data-text=" | \n--- | ---\n | \n | " data-pos="-21"= icon('table')
+
+      .btn-group.btn-group-sm
+        button.btn.btn-secondary.js-upload= icon('paperclip')
     .row
       .col-sm-6
-        = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?
+        .js-content-container[
+          data-attachments-path="#{wiki_attachments_path(@wiki)}"
+          data-page-id="#{@page.try(:id).presence || @wiki.id}"]
+          = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?
       .col-sm-6
         .card
           .card-block
             .markdown-body.js-preview
 
   = f.submit class: 'btn btn-primary', data: { disable_with: t('global.please_wait') }
+

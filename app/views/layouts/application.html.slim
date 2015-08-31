@@ -11,7 +11,7 @@ html
     - if user_signed_in?
       = render 'navbar'
       .container-fluid
-        = yield
+        .m-b= yield
     - else
       = yield
 

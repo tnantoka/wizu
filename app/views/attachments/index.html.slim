@@ -1,0 +1,19 @@
+table.table
+  thead.thead-default
+    tr
+      th #
+      th= t('.file_name')
+      th= t('.pages')
+      th= t('.action')
+  tbody
+    - @attachments.each do |attachment|
+      tr
+        th= attachment.id
+        td= link_to attachment.data_file_name, attachment
+        td
+          ul.list-inline.m-b-0
+            - attachment.pages.each do |page|
+              li= link_to page.title, page
+        td
+          = link_to t('global.delete'), attachment, method: :delete,
+            data: { confirm: t('global.are_you_sure'), disable_with: t('global.delete') }

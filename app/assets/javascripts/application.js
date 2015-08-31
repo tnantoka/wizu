@@ -18,4 +18,6 @@
 //= require autosize
 //= require select2
 //= require underscore 
+//= require dropzone
+//= require jquery.selection/src/jquery.selection
 //= require_tree .

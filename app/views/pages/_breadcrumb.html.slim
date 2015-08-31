@@ -8,6 +8,9 @@ ol.breadcrumb.clean-background
   - when 'tree'
     li= link_to page.title, page
     li.active= t('global.tree_view')
+  - when 'new'
+    li= link_to page.title, page
+    li.active= t('global.new_page')
   - else
     li.active= page.title
     li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))

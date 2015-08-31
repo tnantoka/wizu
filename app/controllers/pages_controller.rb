@@ -9,7 +9,8 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
-    @page.parent_id = params[:parent_id]
+    @parent = Page.find_by(id: params[:parent_id])
+    @page.parent_id = @parent
   end
 
   def create

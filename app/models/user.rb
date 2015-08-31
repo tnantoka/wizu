@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   has_many :wikis, dependent: :destroy
   has_many :pages, dependent: :destroy
+  has_many :attachments, dependent: :nullify
 
   validates :nickname, presence: true
 

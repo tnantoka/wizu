@@ -11,7 +11,7 @@
           .dropdown-divider
           = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
             data: { confirm: t('global.are_you_sure') }
-    = page.title
+    = page.wiki? ? t('activerecord.attributes.wiki.content') : page.title
   .card-block
     .markdown-body= page.render
   - if page.children.exists?
