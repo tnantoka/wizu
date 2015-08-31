@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wiki, only: %i(show edit update destroy tree)
+  before_action :set_wiki, only: %i(show edit update destroy tree search)
+  authorize_resource
 
   def show
   end
@@ -36,6 +37,10 @@ class WikisController < ApplicationController
   end
 
   def tree
+  end
+
+  def search
+    @pages = params[:q].present? ? @wiki.subtree.search(params[:q]).recent.page(params[:page]).per(10) : Page.none
   end
 
   private

@@ -15,7 +15,7 @@
   }
 }
 
-.list-group-flush {
+.list-group-flush:last-child {
   .list-group-item {
     border-bottom: none;
   }

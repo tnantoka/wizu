@@ -2,6 +2,8 @@ class PagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_wiki, only: %i(new create)
   before_action :set_page, only: %i(show edit update destroy histories)
+  authorize_resource :wiki
+  authorize_resource
 
   def show
     redirect_to wiki_path(@page) and return if @page.wiki?

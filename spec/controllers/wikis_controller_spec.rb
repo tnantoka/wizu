@@ -114,4 +114,14 @@ RSpec.describe WikisController, type: :controller do
       expect(response).to render_template('wikis/tree')
     end
   end
+
+  describe '#search' do
+    let!(:pages) { create_list(:page, 5, title: 'title', parent: wiki) }
+    before do
+      get :search, { id: wiki.to_param, q: 'title' }, user_id: user.id
+    end
+    it 'sets pages' do
+      expect(assigns(:pages)).to eq(pages)
+    end
+  end
 end

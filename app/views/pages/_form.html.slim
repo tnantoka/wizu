@@ -22,13 +22,14 @@
         a.btn.btn-secondary.js-insert href="#" data-text=" | \n--- | ---\n | \n | " data-pos="-21"= icon('table')
 
       .btn-group.btn-group-sm
-        button.btn.btn-secondary.js-upload= icon('paperclip')
+        a.btn.btn-secondary.js-upload href="#"= icon('paperclip')
     .row
       .col-sm-6
         .js-content-container[
           data-attachments-path="#{wiki_attachments_path(@wiki)}"
           data-page-id="#{@page.try(:id).presence || @wiki.id}"]
-          = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?
+          = f.text_area :content, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.present?,
+            data: { preview_path: preview_pages_path }
       .col-sm-6
         .card
           .card-block

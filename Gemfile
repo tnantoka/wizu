@@ -74,6 +74,7 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'diffy'
 gem 'paperclip'
+gem 'cancancan'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.alpha'

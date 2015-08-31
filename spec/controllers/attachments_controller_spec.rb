@@ -4,7 +4,7 @@ RSpec.describe AttachmentsController, type: :controller do
   render_views
   let(:user) { create(:user) }
   let(:wiki) { create(:wiki, user: user) }
-  let(:attachment) { create(:attachment, :image, page_id: wiki.id) }
+  let(:attachment) { create(:attachment, :image, page_id: wiki.id, user: user) }
 
   describe '#index' do
     before do

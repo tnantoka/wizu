@@ -23,12 +23,13 @@ initDropzone = ->
       preview()
 
 preview = _.throttle (e) ->
-  return unless $('#page_content').length
+  $content = $('#page_content')
+  return unless $content.length
 
-  path = '/p/preview'
+  path = $content.data('previewPath')
   params =
     page:
-      content: $('#page_content').val()
+      content: $content.val()
   $.ajax
     method: 'POST'
     dataType: 'json'

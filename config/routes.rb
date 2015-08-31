@@ -7,19 +7,20 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
 
   controller :welcome do
-    get :dashboard, path: 'd'
+    get :dashboard
   end
 
   resources :wikis, path: 'w', shallow: true, except: %i(index) do
     member do
       get :tree
+      get :search
     end
     resources :pages, path: 'p', except: %i(index) do
       member do
         get :histories
       end
     end
-    resources :attachments, path: 'a', except: %i(new edit update)
+    resources :attachments, except: %i(new edit update)
   end
 
   resources :pages, path: 'p', only: [] do

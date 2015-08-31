@@ -1,0 +1,5 @@
+p.card-text
+  = link_to t('global.new_page'), new_wiki_page_path(wiki), class: 'card-link'
+  = link_to t('global.tree_view'), tree_wiki_path(wiki), class: 'card-link'
+  = link_to t('global.attachments'), wiki_attachments_path(wiki), class: 'card-link'
+

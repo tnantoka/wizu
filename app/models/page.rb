@@ -28,6 +28,7 @@ class Page < ActiveRecord::Base
   before_save :set_slug, if: 'slug.blank?'
 
   scope :recent, -> { order(updated_at: :desc) }
+  scope :search, -> q { where('title LIKE ? OR content LIKE ?', "%#{q}%", "%#{q}%") }
 
   has_ancestry touch: true
   has_paper_trail
@@ -53,8 +54,10 @@ class Page < ActiveRecord::Base
     self.slug = slug
   end
 
-  def tree(separator = ' / ')
-    path.map { |p| p.title }.join(separator)
+  def tree(with_root = true, separator = ' / ')
+    path.map { |p|
+      !with_root && p.root? ? nil : p.title 
+    }.compact.join(separator)
   end
 
   private

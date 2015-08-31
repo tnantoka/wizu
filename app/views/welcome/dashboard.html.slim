@@ -11,10 +11,7 @@
                 small.text-muted
                   = t('.last_updated')
                   =< time_ago(wiki.updated_at)
-              p.card-text
-                = link_to t('global.new_page'), new_wiki_page_path(wiki), class: 'card-link'
-                = link_to t('global.tree_view'), tree_wiki_path(wiki), class: 'card-link'
-                = link_to t('global.attachments'), wiki_attachments_path(wiki), class: 'card-link'
+              = render 'wikis/links', wiki: wiki
 - else
   .card.card-block
     h4.card-title= t('.no_wiki_found')

@@ -17,3 +17,5 @@ table.table
         td
           = link_to t('global.delete'), attachment, method: :delete,
             data: { confirm: t('global.are_you_sure'), disable_with: t('global.delete') }
+
+= paginate @attachments

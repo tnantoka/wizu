@@ -2,6 +2,8 @@ class AttachmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_wiki, only: %i(index create)
   before_action :set_attachment, only: %i(show destroy)
+  authorize_resource :wiki
+  authorize_resource
 
   def index
     @attachments = @wiki.attachments.recent.page(params[:page]).per(20)
@@ -14,7 +16,6 @@ class AttachmentsController < ApplicationController
 
   def create
     @attachment = current_user.attachments.new(attachment_params)
-    
     if @attachment.save
       render json: @attachment.to_builder.target!
     else

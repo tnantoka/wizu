@@ -1,9 +1,10 @@
 nav.navbar.navbar-static-top.navbar-light.bg-faded.m-b
   = link_to t('global.brand'), :dashboard, class: 'navbar-brand'
   ul.nav.navbar-nav.pull-right
-    li.nav-item
-      form.form-inline.navbar-form.pull-right
-        input.form-control.form-control-sm type="text" placeholder="#{t('.search')}"
+    - if @wiki.try(:persisted?)
+      li.nav-item
+        = form_tag search_wiki_path(@wiki), method: :get, class: 'form-inline navbar-form pull-right'
+          input.form-control.form-control-sm type="text" name="q" placeholder="#{t('.search')}" value="#{params[:q]}"
     li.nav-item.hidden-xs-down
     li.nav-item.dropdown
       a.dropdown-toggle.nav-link type="button" data-toggle="dropdown"
