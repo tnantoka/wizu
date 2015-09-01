@@ -8,7 +8,7 @@ nav.navbar.navbar-static-top.navbar-light.bg-faded.m-b
     li.nav-item.hidden-xs-down
     li.nav-item.dropdown
       a.dropdown-toggle.nav-link type="button" data-toggle="dropdown"
-        = image_tag current_user.avatar(24)
+        = image_tag current_user.avatar(24), size: '24x24'
       .dropdown-menu.dropdown-menu-right
         h6.dropdown-header= current_user.nickname
         = link_to t('global.new_wiki'), :new_wiki, class: 'dropdown-item'

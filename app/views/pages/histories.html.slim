@@ -11,7 +11,7 @@
           span.label.label-default= t(".#{version.event}")
         li= time_ago(version.created_at)
         li
-          = image_tag user.try(:avatar, 24)
+          = image_tag user.try(:avatar, 24), size: '24x24'
           =< user.try(:nickname)
     .card-block
       .row
