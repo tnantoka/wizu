@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to :root, alert: exception.message
+  end
+
   private
     def set_wiki
       @wiki = Wiki.find_by!(slug: params[:wiki_id].presence || params[:id])

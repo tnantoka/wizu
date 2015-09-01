@@ -15,7 +15,7 @@
 
 FactoryGirl.define do
   factory :user, class: 'User' do
-    nickname Faker::Name.name
+    nickname { Faker::Name.name }
     image Faker::Avatar.image
   end
 end

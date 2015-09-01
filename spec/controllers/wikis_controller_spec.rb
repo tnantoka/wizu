@@ -121,7 +121,17 @@ RSpec.describe WikisController, type: :controller do
       get :search, { id: wiki.to_param, q: 'title' }, user_id: user.id
     end
     it 'sets pages' do
-      expect(assigns(:pages)).to eq(pages)
+      expect(assigns(:pages).size).to eq(pages.size)
+    end
+  end
+
+  describe '#authorize' do
+    let(:user_2) { create(:user) }
+    before do
+      get :show, { id: wiki.to_param }, user_id: user_2.id
+    end
+    it 'rendirects to root' do
+      expect(response).to redirect_to(:root)
     end
   end
 end
