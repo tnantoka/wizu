@@ -12,11 +12,14 @@
           .dropdown-divider
           = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
             data: { confirm: t('global.are_you_sure') }
-    => page.wiki? ? t('activerecord.attributes.wiki.content') : page.title
+    - if page.wiki?
+      => t('activerecord.attributes.wiki.content') if page.content.present?
+    - else
+      => page.title
     small.text-muted= time_ago(page.updated_at)
-  .card-block
-    p.card-text=
-    .markdown-body= page.render
+  - if !page.wiki? || page.content.present?
+    .card-block
+      .markdown-body= page.render
   - if page.children.exists?
     .list-group.list-group-flush
       - page.children.each do |p|
