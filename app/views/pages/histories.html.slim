@@ -1,7 +1,8 @@
 = render 'breadcrumb', page: @page
 
-- last_page = @page
-- @versions.each do |version|
+- @versions.each_with_index do |version, i|
+  - cur_page = @pages[i]
+  - prev_page = @pages[i + 1]
   - user = User.find_by(version.whodunnit)
   .card
     .card-header
@@ -15,17 +16,16 @@
     .card-block
       .row
         .col-sm-6
-          = last_page.title
+          = cur_page.title
         .col-sm-6
-          = diff(version.reify.try(:title), last_page.title)
+          = diff(prev_page.title, cur_page.title)
     hr.m-a-0
     .card-block
       .row
         .col-sm-6
-          .markdown-body= last_page.render
+          .markdown-body= cur_page.render
         .col-sm-6
-          = diff(version.reify.try(:content), last_page.content)
-  - last_page = version.reify
+          = diff(prev_page.content, cur_page.content)
 
 = paginate @versions
 

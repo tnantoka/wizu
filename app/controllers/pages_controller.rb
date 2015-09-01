@@ -49,6 +49,14 @@ class PagesController < ApplicationController
 
   def histories
     @versions = @page.versions.reorder(created_at: :desc).includes(:item).page(params[:page]).per(5)
+
+    # @pages = [@page] + @versions.to_a.map { |v| v.reify } # Doesn't work?
+    @pages = []
+    prev = @page
+    begin
+      @pages << prev
+    end while prev = prev.previous_version
+    @pages << Page.new
   end
 
   private
