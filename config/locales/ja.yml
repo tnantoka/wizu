@@ -27,6 +27,8 @@ ja:
     histories:
       create: 作成
       update: 更新
+    page:
+      toc: 目次
   attachments:
     index:
       file_name: ファイル名

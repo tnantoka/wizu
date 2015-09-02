@@ -54,4 +54,24 @@ RSpec.describe Page, type: :model do
       expect(page.summary(3)).to eq('<a href="url">li…</a>')
     end
   end
+
+  describe '#toc' do
+    let(:page) { create(:page, content: "# header1\n## header2") }
+    it 'returns toc html' do
+      expect(page.headers).to eq(2)
+      toc = <<-EOD.strip_heredoc
+        <ul>
+        <li>
+        <a href="#header1">header1</a>
+        <ul>
+        <li>
+        <a href="#header2">header2</a>
+        </li>
+        </ul>
+        </li>
+        </ul>
+      EOD
+      expect(page.toc).to eq(toc)
+    end
+  end
 end

@@ -19,6 +19,12 @@
     small.text-muted= time_ago(page.updated_at)
   - if !page.wiki? || page.content.present?
     .card-block
+      - if page.headers > 1
+        .card.markdown-body
+          .card-block.p-y-0
+            h4.card-title
+              a href="#toc" data-toggle="collapse"= t('.toc')
+            #toc.collapse.in= page.toc
       .markdown-body= page.render
   - if page.children.exists?
     .list-group.list-group-flush

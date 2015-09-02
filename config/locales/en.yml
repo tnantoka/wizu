@@ -27,6 +27,8 @@ en:
     histories:
       create: Create
       update: Update
+    page:
+      toc: TOC
   attachments:
     index:
       file_name: File name

@@ -46,6 +46,16 @@ class Page < ActiveRecord::Base
     output_html(processor)
   end
 
+  def headers
+    content.scan(/^#/).size
+  end
+
+  def toc
+    renderer = Qiita::Markdown::Greenmat::HTMLToCRenderer.new
+    greenmat = Greenmat::Markdown.new(renderer)
+    greenmat.render(content.to_s).html_safe
+  end
+
   def set_slug
     begin
       slug = SecureRandom.urlsafe_base64(10)
