@@ -7,7 +7,6 @@
 #  content    :text(16777215)
 #  slug       :string(255)      not null
 #  ancestry   :string(255)
-#  wiki       :boolean          default(FALSE), not null
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -23,5 +22,6 @@ FactoryGirl.define do
   factory :page, class: 'Page' do
     title Faker::Name.title
     content Faker::Lorem.paragraph
+    parent { create(:wiki) }
   end
 end

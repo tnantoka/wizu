@@ -7,7 +7,6 @@
 #  content    :text(16777215)
 #  slug       :string(255)      not null
 #  ancestry   :string(255)
-#  wiki       :boolean          default(FALSE), not null
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -58,6 +57,10 @@ class Page < ActiveRecord::Base
     path.map { |p|
       !with_root && p.root? ? nil : p.title 
     }.compact.join(separator)
+  end
+
+  def wiki?
+    root?
   end
 
   private
