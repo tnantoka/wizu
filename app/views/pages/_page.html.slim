@@ -33,4 +33,8 @@
           => p.title
           small.text-muted= time_ago(p.updated_at)
   - if page.wiki?
-    .card-block= render 'wikis/links', wiki: page
+    .card-block
+      = link_to t('global.new_page'), new_wiki_page_path(page), class: 'card-link'
+      = link_to t('global.tree_view'), tree_wiki_path(page), class: 'card-link'
+      = link_to t('global.attachments'), wiki_attachments_path(page), class: 'card-link'
+

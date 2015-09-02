@@ -11,7 +11,11 @@
                 small.text-muted
                   = t('.last_updated')
                   =< time_ago(wiki.updated_at)
-              = render 'wikis/links', wiki: wiki
+              .btn-group.btn-group-sm
+                = link_to icon('plus'), new_wiki_page_path(wiki), class: 'btn btn-secondary'
+                = link_to icon('list'), tree_wiki_path(wiki), class: 'btn btn-secondary'
+                = link_to icon('paperclip'), wiki_attachments_path(wiki), class: 'btn btn-secondary'
+
 - else
   .card.card-block
     h4.card-title= t('.no_wiki_found')
