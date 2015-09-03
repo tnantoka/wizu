@@ -84,9 +84,9 @@ gem 'kaminari-i18n'
 gem 'diffy'
 gem 'paperclip'
 gem 'cancancan'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap', '4.0.0.alpha'
   gem 'rails-assets-font-awesome-bower'
   gem 'rails-assets-github-markdown-css'
   gem 'rails-assets-autosize'

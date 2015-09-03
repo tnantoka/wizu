@@ -73,6 +73,10 @@ class Page < ActiveRecord::Base
     root?
   end
 
+  def wiki
+    root
+  end
+
   private
     def output_html(processor)
       processed = processor.call(content.to_s)

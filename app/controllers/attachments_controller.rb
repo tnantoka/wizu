@@ -35,6 +35,6 @@ class AttachmentsController < ApplicationController
 
     def set_attachment
       @attachment = Attachment.find_by!(slug: params[:id])
-      @wiki ||= @attachment.page.root
+      @wiki ||= @attachment.wiki
     end
 end

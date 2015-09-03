@@ -1,14 +1,4 @@
 // Bootstrap
-.label,
-.list-group-item,
-.breadcrumb,
-.alert,
-.card,
-.form-control,
-.btn {
-  border-radius: 0 !important;
-}
-
 .navbar-form {
   .form-control-sm {
     margin-top: 0.25rem;
@@ -23,7 +13,6 @@
       }
     }
   }
-
   .card-header {
     >.btn-group {
       margin-top: -0.15rem;
@@ -36,6 +25,12 @@
   }
 }
 
+.card-deck {
+  .card {
+    min-height: 150px;
+  }
+}
+
 // Markdown
 .markdown-body {
   .fa-link {
@@ -44,7 +39,6 @@
 }
 
 // Select2
-
 .select2-container--open .select2-dropdown--above,
 .select2-container--default .select2-selection--single {
   border-radius: 0;

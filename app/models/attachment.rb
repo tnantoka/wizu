@@ -53,6 +53,10 @@ class Attachment < ActiveRecord::Base
     end
   end
 
+  def wiki
+    page.wiki
+  end
+
   private
     def set_slug
       begin

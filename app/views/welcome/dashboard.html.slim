@@ -1,12 +1,13 @@
-- if @wikis.exists?
+- if @wikis.present?
   - @wikis.each_slice(4) do |wikis|
-    .row
+    .card-deck
       - wikis.each do |wiki|
-        .col-sm-3
-          .card
-            .card-block
+        .card
+          .card-block
+            - if wiki.persisted?
               h4.card-title= link_to wiki.title, wiki
-              p.card-text.markdown-body= wiki.summary(80).presence || '&nbsp;'.html_safe
+              - if wiki.content.present?
+                p.card-text.markdown-body= wiki.summary(80).presence
               p.card-text
                 small.text-muted
                   = t('.last_updated')
@@ -15,7 +16,11 @@
                 = link_to icon('plus'), new_wiki_page_path(wiki), class: 'btn btn-secondary'
                 = link_to icon('list'), tree_wiki_path(wiki), class: 'btn btn-secondary'
                 = link_to icon('paperclip'), wiki_attachments_path(wiki), class: 'btn btn-secondary'
-
+            - else
+              h4.card-title= link_to t('global.new_wiki'), :new_wiki
+      - (4 - wikis.size).times do |i|
+        .card.invisible
+          .card-block
 - else
   .card.card-block
     h4.card-title= t('.no_wiki_found')
