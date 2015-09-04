@@ -5,13 +5,23 @@ class Ability
     user ||= User.new
 
     can :manage, Page do |page|
-      page.wiki.user == user
+      user.admin?(page.wiki)
     end
     can :manage, Wiki do |wiki|
-      wiki.user == user
+      user.admin?(wiki)
     end
     can :manage, Attachment do |attachment|
-      attachment.wiki.user == user
+      user.admin?(attachment.wiki)
+    end
+
+    can :read, Page do |page|
+      page.public?
+    end
+    can :read, Wiki do |wiki|
+      wiki.public?
+    end
+    can :read, Attachment do |attachment|
+      attachment.wiki.public?
     end
     
     # Define abilities for the passed in user here. For example:

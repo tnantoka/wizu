@@ -127,11 +127,22 @@ RSpec.describe WikisController, type: :controller do
 
   describe '#authorize' do
     let(:user_2) { create(:user) }
-    before do
-      get :show, { id: wiki.to_param }, user_id: user_2.id
+    context 'with private wiki' do
+      before do
+        get :show, { id: wiki.to_param }, user_id: user_2.id
+      end
+      it 'rendirects to root' do
+        expect(response).to redirect_to(:root)
+      end
     end
-    it 'rendirects to root' do
-      expect(response).to redirect_to(:root)
+    context 'with public wiki' do
+      let(:wiki) { create(:wiki, :public, user: user) }
+      before do
+        get :show, { id: wiki.to_param }, user_id: user_2.id
+      end
+      it 'renders show' do
+        expect(response).to render_template('wikis/show')
+      end
     end
   end
 end

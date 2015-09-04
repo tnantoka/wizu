@@ -1,17 +1,26 @@
 ol.breadcrumb.clean-background
   - page.ancestors.each do |p|
-    li= link_to p.title, (p.wiki? ? wiki_path(p) : p) 
+    li
+      - if p.wiki?
+        = link_to p.title, wiki_path(p)
+        span.text-muted= wiki_icon(p)
+      - else
+        = link_to p.title, p
+
+  - if %w(histories tree new).include?(action_name)
+    li
+      = link_to page.title, page
+      span.text-muted= wiki_icon(page) if page.wiki?
   - case action_name
   - when 'histories'
-    li= link_to page.title, page
     li.active= t('global.histories')
   - when 'tree'
-    li= link_to page.title, page
     li.active= t('global.tree_view')
   - when 'new'
-    li= link_to page.title, page
     li.active= t('global.new_page')
   - else
-    li.active= page.title
+    li.active
+      = page.title
+      = wiki_icon(page) if page.wiki?
     li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))
 

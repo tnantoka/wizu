@@ -5,7 +5,9 @@
         .card
           .card-block
             - if wiki.persisted?
-              h4.card-title= link_to wiki.title, wiki
+              h4.card-title
+                = link_to wiki.title, wiki
+                small.text-muted= wiki_icon(wiki)
               - if wiki.content.present?
                 p.card-text.markdown-body= wiki.summary(80).presence
               p.card-text

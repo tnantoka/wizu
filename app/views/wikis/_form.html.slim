@@ -7,6 +7,15 @@
   fieldset.form-group
     = f.label :content
     = f.text_area :content, class: 'form-control'
+  .radio-inline
+    label
+      = f.radio_button :secret, true
+      = t('.private')
+  .radio-inline
+    label
+      = f.radio_button :secret, false
+      = t('.public')
+
   fieldset.form-group
     = f.label :slug
     = f.text_field :slug, class: 'form-control'

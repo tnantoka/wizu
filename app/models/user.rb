@@ -37,4 +37,8 @@ class User < ActiveRecord::Base
   def avatar(size)
     "#{image}&s=#{size}"
   end
+
+  def admin?(wiki)
+    wiki.user == self
+  end
 end

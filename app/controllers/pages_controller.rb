@@ -66,6 +66,6 @@ class PagesController < ApplicationController
 
     def set_page
       @page = Page.find_by!(slug: params[:id])
-      @wiki ||= @page.root
+      @wiki ||= @page.wiki
     end
 end

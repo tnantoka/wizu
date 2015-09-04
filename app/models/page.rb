@@ -10,6 +10,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  secret     :boolean          default(TRUE), not null
 #
 # Indexes
 #
@@ -75,6 +76,10 @@ class Page < ActiveRecord::Base
 
   def wiki
     root
+  end
+
+  def public?
+    !wiki.secret?
   end
 
   private

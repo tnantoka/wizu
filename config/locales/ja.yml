@@ -34,6 +34,10 @@ ja:
       file_name: ファイル名
       pages: ページ
       action: 操作
+  wikis:
+    form:
+      private: 非公開
+      public: 公開
 
   flash:
     application:

@@ -2,16 +2,18 @@
 .card
   .card-header
     .btn-group.btn-group-sm.pull-right
-      = link_to t('global.edit'), (page.wiki? ? edit_wiki_path(page) : edit_page_path(page)),
-        class: 'btn btn-secondary js-edit-page', title: 'e'
+      - if can?(:manage, page)
+        = link_to t('global.edit'), (page.wiki? ? edit_wiki_path(page) : edit_page_path(page)),
+          class: 'btn btn-secondary js-edit-page', title: 'e'
       .btn-group.btn-group-sm
         button type="button" class="btn btn-secondary" data-toggle="dropdown"
           = icon('caret-down')
         .dropdown-menu.dropdown-menu-right
           = link_to t('global.histories'), histories_page_path(page), class: 'dropdown-item'
-          .dropdown-divider
-          = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
-            data: { confirm: t('global.are_you_sure') }
+          - if can?(:manage, page)
+            .dropdown-divider
+            = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
+              data: { confirm: t('global.are_you_sure') }
     - if page.wiki?
       => t('activerecord.attributes.wiki.content') if page.content.present?
     - else
@@ -32,7 +34,7 @@
         = link_to p, class: 'list-group-item' do
           => p.title
           small.text-muted= time_ago(p.updated_at)
-  - if page.wiki?
+  - if page.wiki? && can?(:manage, page)
     .card-block
       = link_to t('global.new_page'), new_wiki_page_path(page), class: 'card-link'
       = link_to t('global.tree_view'), tree_wiki_path(page), class: 'card-link'

@@ -13,8 +13,12 @@ module ApplicationHelper
 
   def title_tag
     titles = [t('global.brand')]
-    titles.insert(0, @wiki.title) if @wiki.present?
-    titles.insert(0, @page.title) if @page.present?
+    titles.insert(0, @wiki.title) if @wiki.try(:persisted?)
+    titles.insert(0, @page.title) if @page.try(:persisted?)
     titles.join(' - ')
+  end
+
+  def wiki_icon(wiki)
+    icon(wiki.public? ? 'globe' : 'lock')
   end
 end
