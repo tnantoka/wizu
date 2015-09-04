@@ -16,6 +16,11 @@ $(document).on 'keydown', 'textarea', (e) ->
       handleTabKey(e)
     when 13
       handleEnterKey(e)
+
+      if $(e.target).data('autosize-on')
+        evt = document.createEvent('Event')
+        evt.initEvent('autosize:update', true, false)
+        e.target.dispatchEvent(evt)
     when 32
       handleSpaceKey(e)
   return
