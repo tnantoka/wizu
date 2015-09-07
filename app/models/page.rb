@@ -39,6 +39,7 @@ class Page < ActiveRecord::Base
 
   def render
     processor = Qiita::Markdown::Processor.new
+    processor.filters << ::Filters::InternalLink
     output_html(processor)
   end
 
