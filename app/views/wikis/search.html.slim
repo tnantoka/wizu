@@ -1,8 +1,8 @@
 - @pages.each do |page|
   .card
     .card-block
-      h4.card-title= link_to page.tree(false), page
-      p.card-text= page.summary(140)
+      h4.card-title= link_to page.tree(page.wiki?), page
+      p.card-text.markdown-body= page.summary(140)
       p.card-text
         small.text-muted= time_ago(page.updated_at)
 
