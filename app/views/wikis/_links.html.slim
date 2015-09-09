@@ -1,0 +1,7 @@
+- with_icon ||= false
+- item_class ||= 'card-link'
+
+= link_to (with_icon ? icon('plus') : t('global.new_page')), new_wiki_page_path(page), class: item_class
+= link_to (with_icon ? icon('list') : t('global.tree_view')), tree_wiki_path(page), class: item_class
+= link_to (with_icon ? icon('paperclip') : t('global.attachments')), wiki_attachments_path(page), class: item_class
+

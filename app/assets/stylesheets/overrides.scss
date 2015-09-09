@@ -31,6 +31,15 @@
   }
 }
 
+.breadcrumb {
+  .dropdown {
+    display: inline-block;
+    > a {
+      cursor: pointer;
+    }
+  }
+}
+
 // Markdown
 .markdown-body {
   .fa-link {

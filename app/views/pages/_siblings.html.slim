@@ -1,0 +1,15 @@
+- parent = page.parent.presence || @wiki
+- siblings = page.siblings.where.not(id: page.id)
+.dropdown
+  a data-toggle="dropdown"
+    = icon('caret-down')
+  .dropdown-menu
+    - if page.wiki?
+      = render 'wikis/links', page: page, item_class: 'dropdown-item'
+    - else
+      = link_to t('global.new_page'), new_wiki_page_path(@wiki, parent_id: (parent.wiki? ? nil : parent.id)), class: 'dropdown-item'
+      - if siblings.exists?
+        .dropdown-divider
+        - siblings.each do |sibling|
+          = link_to sibling.title, sibling, class: 'dropdown-item'
+  

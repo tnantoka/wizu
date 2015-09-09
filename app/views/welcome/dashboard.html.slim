@@ -15,9 +15,7 @@
                   = t('.last_updated')
                   =< time_ago(wiki.updated_at)
               .btn-group.btn-group-sm
-                = link_to icon('plus'), new_wiki_page_path(wiki), class: 'btn btn-secondary'
-                = link_to icon('list'), tree_wiki_path(wiki), class: 'btn btn-secondary'
-                = link_to icon('paperclip'), wiki_attachments_path(wiki), class: 'btn btn-secondary'
+                = render 'wikis/links', page: wiki, item_class: 'btn btn-secondary', with_icon: true
             - else
               h4.card-title= link_to t('global.new_wiki'), :new_wiki
       - (4 - wikis.size).times do |i|

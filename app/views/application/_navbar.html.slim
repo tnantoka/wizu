@@ -7,7 +7,7 @@ nav.navbar.navbar-static-top.navbar-light.bg-faded.m-b
           input.form-control.form-control-sm type="text" name="q" placeholder="#{t('.search')}" value="#{params[:q]}"
     li.nav-item.hidden-xs-down
     li.nav-item.dropdown
-      a.dropdown-toggle.nav-link type="button" data-toggle="dropdown"
+      a.dropdown-toggle.nav-link data-toggle="dropdown"
         = image_tag current_user.avatar(24), size: '24x24'
       .dropdown-menu.dropdown-menu-right
         h6.dropdown-header= current_user.nickname

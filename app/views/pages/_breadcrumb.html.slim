@@ -6,11 +6,13 @@ ol.breadcrumb.clean-background
         span.text-muted= wiki_icon(p)
       - else
         = link_to p.title, p
+      =< render 'pages/siblings', page: p
 
   - if %w(histories tree new).include?(action_name)
     li
       = link_to page.title, page
       span.text-muted= wiki_icon(page) if page.wiki?
+      =< render 'pages/siblings', page: page
   - case action_name
   - when 'histories'
     li.active= t('global.histories')
@@ -22,5 +24,7 @@ ol.breadcrumb.clean-background
     li.active
       = page.title
       = wiki_icon(page) if page.wiki?
+      =< render 'pages/siblings', page: page
+      
     li.active= link_to icon('plus'), new_wiki_page_path(@wiki, parent_id: (page.wiki? ? nil : page.id))
 
