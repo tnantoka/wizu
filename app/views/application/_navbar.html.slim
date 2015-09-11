@@ -1,5 +1,14 @@
 nav.navbar.navbar-static-top.navbar-light.bg-faded.m-b
   = link_to t('global.brand'), :dashboard, class: 'navbar-brand'
+  ul.nav.navbar-nav
+    li.nav-item.dropdown
+      a.nav-link data-toggle="dropdown"
+        = icon('caret-down')
+      .dropdown-menu
+        - current_user.accessible_wikis.each do |wiki|
+          = link_to wiki.title, wiki, class: 'dropdown-item'
+
+
   ul.nav.navbar-nav.pull-right
     - if @wiki.try(:persisted?)
       li.nav-item

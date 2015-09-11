@@ -1,7 +1,14 @@
 // Bootstrap
-.navbar-form {
-  .form-control-sm {
-    margin-top: 0.25rem;
+.navbar {
+  .navbar-form {
+    .form-control-sm {
+      margin-top: 0.25rem;
+    }
+  }
+  .dropdown {
+    > a {
+      cursor: pointer;
+    }
   }
 }
 
