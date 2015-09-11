@@ -41,7 +41,7 @@ RSpec.describe WelcomeController, type: :controller do
         expect(response).to have_http_status(:success)
       end
       it 'assings wikis' do
-        expect(assigns[:wikis].size).to eq(user.wikis.size + 1)
+        expect(assigns[:wikis].size).to eq(user.accessible_wikis.size + 1)
       end
     end
     context 'when signed out' do

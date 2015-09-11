@@ -13,6 +13,9 @@ class Ability
     can :manage, Attachment do |attachment|
       user.admin?(attachment.wiki)
     end
+    can :manage, Collaboration do |collaboration|
+      user.admin?(collaboration.wiki)
+    end
 
     can :read, Page do |page|
       page.public?

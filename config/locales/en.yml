@@ -12,6 +12,7 @@ en:
     histories: Histories
     tree_view: Tree view
     attachments: Attachments
+    collaborators: Collaborators
 
   application:
     navbar:
@@ -38,6 +39,9 @@ en:
     form:
       private: Private
       public: Public
+  collaborations:
+    index:
+      no_collaborators: This wiki doesn’t have any collaborators yet.
 
   flash:
     application:
@@ -55,6 +59,7 @@ en:
       wiki: Wiki
       page: Page
       attachment: Attachment
+      collaboration: Collaborator
     attributes:
       wiki:
         title: Title
@@ -64,5 +69,7 @@ en:
         title: Title
         content: Content
         parent_id: Parent
+      collaboration:
+        user_id: User
 
 

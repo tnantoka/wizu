@@ -8,7 +8,7 @@ ol.breadcrumb.clean-background
         = link_to p.title, p
       =< render 'pages/siblings', page: p
 
-  - if %w(histories tree new).include?(action_name)
+  - if %w(histories tree new index).include?(action_name)
     li
       = link_to page.title, page
       span.text-muted= wiki_icon(page) if page.wiki?
@@ -20,6 +20,12 @@ ol.breadcrumb.clean-background
     li.active= t('global.tree_view')
   - when 'new'
     li.active= t('global.new_page')
+  - when 'index'
+    - case controller_name
+    - when 'attachments'
+      li.active= t('global.attachments')
+    - when 'collaborations'
+      li.active= t('global.collaborators')
   - else
     li.active
       = page.title

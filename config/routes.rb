@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       end
     end
     resources :attachments, except: %i(new edit update)
+    resources :collaborations, only: %i(index create destroy)
   end
 
   resources :pages, path: 'p', only: [] do

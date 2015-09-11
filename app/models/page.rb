@@ -21,6 +21,8 @@
 
 class Page < ActiveRecord::Base
   belongs_to :user
+  has_many :collaborations, dependent: :destroy
+  has_many :collaborators, through: :collaboratios, source: :user
 
   validates :title, presence: true
   validates :slug, uniqueness: { case_sensitive: false }, allow_blank: true

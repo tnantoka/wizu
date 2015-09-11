@@ -12,7 +12,7 @@
           = link_to t('global.histories'), histories_page_path(page), class: 'dropdown-item'
           - if can?(:manage, page)
             .dropdown-divider
-            = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item',
+            = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item text-danger',
               data: { confirm: t('global.are_you_sure') }
     - if page.wiki?
       => t('activerecord.attributes.wiki.content') if page.content.present?

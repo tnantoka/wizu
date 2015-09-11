@@ -1,0 +1,23 @@
+= render 'pages/breadcrumb', page: @wiki
+
+.card
+  .card-header
+    = t('global.collaborators')
+  .list-group.list-group-flush
+    - if @collaborations.exists?
+      - @collaborations.each do |collaboration|
+        li.list-group-item
+          = link_to icon('trash'), collaboration, method: :delete, class: 'pull-right text-danger',
+            data: { confirm: t('global.are_you_sure') }
+          = image_tag collaboration.user.avatar(24), size: '24x24'
+          =< collaboration.user.nickname
+    - else
+      li.list-group-item.text-center.p-y-lg = t('.no_collaborators')
+  .card-block
+    = form_for [@wiki, @collaboration] do |f| 
+      fieldset.form-group
+        = f.label :user_id
+        = f.select :user_id,
+          options_for_select(@users.map { |u| [u.nickname, u.id, { data: { image: u.avatar(24) }}] }),
+          {}, class: 'form-control'
+      = f.submit class: 'btn btn-primary', data: { disable_with: t('global.please_wait') }

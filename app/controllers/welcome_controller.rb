@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
-    @wikis = current_user.wikis.recent
+    @wikis = current_user.accessible_wikis.recent
     @wikis << Wiki.new if @wikis.exists?
   end
 end

@@ -12,6 +12,7 @@ ja:
     histories: 編集履歴
     tree_view: ツリー表示
     attachments: ファイル
+    collaborators: メンバー
 
   application:
     navbar:
@@ -38,6 +39,9 @@ ja:
     form:
       private: 非公開
       public: 公開
+  collaborations:
+    index:
+      no_collaborators: このWikiにはまだメンバーは設定されていません
 
   flash:
     application:
@@ -55,6 +59,7 @@ ja:
       wiki: Wiki
       page: ページ
       attachment: ファイル
+      collaboration: メンバー
     attributes:
       wiki:
         title: タイトル
@@ -64,5 +69,7 @@ ja:
         title: タイトル
         content: 本文
         parent_id: 親ページ
+      collaboration:
+        user_id: ユーザー
 
 

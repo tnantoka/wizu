@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
   has_many :wikis, dependent: :destroy
   has_many :pages, dependent: :destroy
   has_many :attachments, dependent: :nullify
+  has_many :collaborations, dependent: :destroy
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: { case_sensitive: false }
 
   class << self
     def find_or_create_with_identity!(identity)
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
   end
 
   def admin?(wiki)
-    wiki.user == self
+    wiki.user == self || wiki.collaborations.exists?(user_id: self.id)
+  end
+
+  def accessible_wikis
+    Wiki.where(id: wikis.pluck(:id) + collaborations.pluck(:page_id))
   end
 end
