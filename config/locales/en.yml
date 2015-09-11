@@ -13,6 +13,7 @@ en:
     tree_view: Tree view
     attachments: Attachments
     collaborators: Collaborators
+    activities: Activities
 
   application:
     navbar:
@@ -39,6 +40,9 @@ en:
     form:
       private: Private
       public: Public
+    activities:
+      create: Create
+      update: Update
   collaborations:
     index:
       no_collaborators: This wiki doesn’t have any collaborators yet.
@@ -71,5 +75,4 @@ en:
         parent_id: Parent
       collaboration:
         user_id: User
-
 

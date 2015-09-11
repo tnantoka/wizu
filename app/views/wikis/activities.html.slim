@@ -1,0 +1,15 @@
+= render 'pages/breadcrumb', page: @wiki
+table.table
+  - @activities.each do |activity|
+    - user = User.find_by(activity.whodunnit)
+    - page = activity.reify.presence || Page.find_by(id: activity.item_id)
+    tr
+      td
+        span.label.label-default= t(".#{activity.event}")
+      td
+        = link_to page.title, page
+      td
+        = image_tag user.try(:avatar, 24), size: '24x24'
+        =< user.try(:nickname)
+      td
+        = time_ago(activity.created_at)

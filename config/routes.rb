@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       get :tree
       get :search
+      get :activities
     end
     resources :pages, path: 'p', except: %i(index) do
       member do

@@ -145,4 +145,13 @@ RSpec.describe WikisController, type: :controller do
       end
     end
   end
+
+  describe '#activities' do
+    before do
+      get :activities, { id: wiki.to_param }, user_id: user.id
+    end
+    it 'renders activities' do
+      expect(response).to render_template('wikis/activities')
+    end
+  end
 end

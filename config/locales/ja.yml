@@ -13,6 +13,7 @@ ja:
     tree_view: ツリー表示
     attachments: ファイル
     collaborators: メンバー
+    activities: アクティビティ
 
   application:
     navbar:
@@ -39,6 +40,9 @@ ja:
     form:
       private: 非公開
       public: 公開
+    activities:
+      update: 更新
+      create: 作成
   collaborations:
     index:
       no_collaborators: このWikiにはまだメンバーは設定されていません
@@ -71,5 +75,4 @@ ja:
         parent_id: 親ページ
       collaboration:
         user_id: ユーザー
-
 

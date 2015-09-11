@@ -29,4 +29,8 @@ class Wiki < Page
   def attachments
     Attachment.where(page_id: subtree_ids)
   end
+
+  def activities
+    PaperTrail::Version.where(item_id: descendant_ids)
+  end
 end

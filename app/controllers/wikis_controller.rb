@@ -1,9 +1,10 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wiki, only: %i(show edit update destroy tree search)
+  before_action :set_wiki, only: %i(show edit update destroy tree search activities)
   authorize_resource
 
   def show
+    redirect_to page_path(@wiki) and return unless @wiki.wiki?
   end
 
   def new
@@ -21,6 +22,7 @@ class WikisController < ApplicationController
   end
 
   def edit
+    redirect_to edit_page_path(@wiki) and return unless @wiki.wiki?
   end
 
   def update
@@ -41,6 +43,10 @@ class WikisController < ApplicationController
 
   def search
     @pages = params[:q].present? ? @wiki.subtree.search(params[:q]).recent.page(params[:page]).per(10) : Page.none
+  end
+
+  def activities
+    @activities = @wiki.activities.reorder(created_at: :desc).includes(:item).page(params[:page]).per(10)
   end
 
   private

@@ -125,6 +125,4 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to render_template('pages/histories')
     end
   end
-
-
 end
