@@ -27,7 +27,7 @@
             h4.card-title
               a href="#toc" data-toggle="collapse"= t('.toc')
             #toc.collapse.in= page.toc
-      .markdown-body= page.render
+      .markdown-body.text-break= page.render
   - if page.children.exists?
     .list-group.list-group-flush
       - page.children.each do |p|

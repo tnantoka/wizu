@@ -42,6 +42,7 @@ class Page < ActiveRecord::Base
   def render
     processor = Qiita::Markdown::Processor.new(wiki_id: wiki.try(:id))
     processor.filters << ::Filters::InternalLink
+    processor.filters << ::Filters::ExternalLink
     output_html(processor)
   end
 

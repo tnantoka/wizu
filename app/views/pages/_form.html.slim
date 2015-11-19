@@ -5,7 +5,7 @@
     = f.text_field :title, class: 'form-control', required: Rails.env.production?, autofocus: @page.title.blank?
   fieldset.form-group
     = f.label :parent_id
-    = f.select :parent_id, @wiki.subtree.map { |p| [p.tree, p.id] }, {}, class: 'form-control'
+    = f.select :parent_id, ([@wiki] + @wiki.descendants).map { |p| [p.tree, p.id] }, {}, class: 'form-control'
   fieldset.form-group
     = f.label :content
     .btn-toolbar.m-b
@@ -38,7 +38,7 @@
       .col-sm-6
         .card
           .card-block
-            .markdown-body.js-preview
+            .markdown-body.text-break.js-preview
 
   = f.submit class: 'btn btn-primary js-submit-page', data: { disable_with: t('global.please_wait') }, title: 'mod+s'
 

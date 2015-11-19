@@ -43,9 +43,26 @@ RSpec.describe Page, type: :model do
   end
 
   describe '#render' do
-    let(:page) { create(:page, content: '[link](url)') }
+    let(:wiki) { create(:wiki) }
+    let(:page) { create(:page, content: content, parent: wiki) }
+    let(:internal) { create(:page, content: '', parent: wiki) }
+    let(:external) { 'http://example.com' }
+    let(:content) do
+      <<-EOD.strip_heredoc
+        [link](url)
+        http://test.host/p/#{internal.slug}
+        #{external}
+      EOD
+    end
+    let(:html) do
+      <<-EOD.strip_heredoc
+        <p><a href="url">link</a><br>
+        <a href="/p/#{internal.slug}" title="http://test.host/p/#{internal.slug}">#{internal.title}</a><br>
+        <a href="/r?u=#{CGI.escape(external)}" title="#{external}" target="_blank">#{external}</a></p>
+      EOD
+    end
     it 'returns rendered html' do
-      expect(page.render).to eq("<p><a href=\"url\">link</a></p>\n")
+      expect(page.render).to eq(html)
     end
   end
 

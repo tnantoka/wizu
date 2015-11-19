@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   controller :welcome do
     get :dashboard
+    get 'r', action: 'redirect'
   end
 
   resources :wikis, path: 'w', shallow: true, except: %i(index) do

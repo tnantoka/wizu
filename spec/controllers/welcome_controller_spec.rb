@@ -56,4 +56,23 @@ RSpec.describe WelcomeController, type: :controller do
       end
     end
   end
+
+  describe '#redirect' do
+    let(:url) { 'http://example.com' }
+    context 'when referer is valid' do
+      it 'redirects to url' do
+        request.env["HTTP_REFERER"] = 'http://test.host/'
+        get :redirect, u: url
+        expect(response).to redirect_to(url)
+      end
+    end
+    context 'when referer is invalid' do
+      it 'raises 404' do
+        request.env["HTTP_REFERER"] = 'http://example.com/'
+        expect {
+          get :redirect, u: url
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
