@@ -43,9 +43,9 @@ RSpec.describe Page, type: :model do
   end
 
   describe '#render' do
-    let!(:wiki) { create(:wiki) }
-    let!(:page) { create(:page, content: content, parent: wiki) }
-    let!(:internal) { create(:page, title: 'internal title', content: 'internal content', parent: wiki) }
+    let(:wiki) { create(:wiki) }
+    let(:page) { create(:page, content: content, parent: wiki) }
+    let(:internal) { create(:page, title: 'internal title', content: 'internal content', parent: wiki) }
     let(:external) { 'http://example.com' }
     let(:content) do
       <<-EOD.strip_heredoc
