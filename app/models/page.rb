@@ -39,11 +39,23 @@ class Page < ActiveRecord::Base
     slug
   end
 
-  def render
-    processor = Qiita::Markdown::Processor.new(wiki_id: wiki.try(:id))
+  def render(format: :html, wiki_id: wiki.try(:id))
+    processor = Qiita::Markdown::Processor.new(
+      wiki_id: wiki_id,
+      page_slug: slug,
+      format: format
+    )
+    processor.filters.unshift(::Filters::EmbedPage)
     processor.filters << ::Filters::InternalLink
     processor.filters << ::Filters::ExternalLink
-    output_html(processor)
+
+    case format
+    when :html
+      output_html(processor)
+    when :md
+      processor.filters.slice!(1..-1)
+      output_md(processor)
+    end
   end
 
   def summary(length)
@@ -87,9 +99,16 @@ class Page < ActiveRecord::Base
   end
 
   private
-    def output_html(processor)
+    def fragment(processor)
       processed = processor.call(content.to_s)
       fragment = processed[:output]
-      fragment.to_html.html_safe
+    end
+
+    def output_html(processor)
+      fragment(processor).to_html.html_safe
+    end
+
+    def output_md(processor)
+      fragment(processor)
     end
 end

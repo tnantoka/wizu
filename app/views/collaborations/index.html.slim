@@ -12,7 +12,7 @@
           = image_tag collaboration.user.avatar(24), size: '24x24'
           =< collaboration.user.nickname
     - else
-      li.list-group-item.text-center.p-y-lg = t('.no_collaborators')
+      li.list-group-item.text-center.p-y-2 = t('.no_collaborators')
   .card-block
     = form_for [@wiki, @collaboration] do |f| 
       fieldset.form-group

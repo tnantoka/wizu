@@ -8,7 +8,7 @@
     = f.select :parent_id, ([@wiki] + @wiki.descendants).map { |p| [p.tree, p.id] }, {}, class: 'form-control'
   fieldset.form-group
     = f.label :content
-    .btn-toolbar.m-b
+    .btn-toolbar.m-b-1
       .btn-group.btn-group-sm
         a.btn.btn-secondary.js-insert href="#" data-text="# " H1
         a.btn.btn-secondary.js-insert href="#" data-text="## " H2
@@ -34,7 +34,7 @@
           data-attachments-path="#{wiki_attachments_path(@wiki)}"
           data-page-id="#{@page.try(:id).presence || @wiki.id}"]
           = f.text_area :content, class: 'form-control', autofocus: @page.title.present?,
-            data: { preview_path: preview_pages_path }
+            data: { preview_path: preview_wiki_path(@wiki) }
       .col-sm-6
         .card
           .card-block

@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wiki, only: %i(show edit update destroy tree search activities)
+  before_action :set_wiki, only: %i(show edit update destroy tree search activities preview)
   authorize_resource
 
   def show
@@ -47,6 +47,11 @@ class WikisController < ApplicationController
 
   def activities
     @activities = @wiki.activities.reorder(created_at: :desc).includes(:item).page(params[:page]).per(10)
+  end
+
+  def preview
+    page = Page.new(page_params)
+    render json: { html: page.render(wiki_id: @wiki.id) }
   end
 
   private

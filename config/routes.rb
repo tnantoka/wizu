@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :tree
       get :search
       get :activities
+      post :preview
     end
     resources :pages, path: 'p', except: %i(index) do
       member do
@@ -24,10 +25,6 @@ Rails.application.routes.draw do
     end
     resources :attachments, except: %i(new edit update)
     resources :collaborations, only: %i(index create destroy)
-  end
-
-  resources :pages, path: 'p', only: [] do
-    post :preview, on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
