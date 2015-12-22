@@ -8,7 +8,7 @@
     = f.select :parent_id, ([@wiki] + @wiki.descendants).map { |p| [p.tree, p.id] }, {}, class: 'form-control'
   fieldset.form-group
     = f.label :content
-    .btn-toolbar.m-b
+    .btn-toolbar.m-b-1
       .btn-group.btn-group-sm
         a.btn.btn-secondary.js-insert href="#" data-text="# " H1
         a.btn.btn-secondary.js-insert href="#" data-text="## " H2
