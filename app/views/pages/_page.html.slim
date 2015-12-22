@@ -10,6 +10,8 @@
           = icon('caret-down')
         .dropdown-menu.dropdown-menu-right
           = link_to t('global.histories'), histories_page_path(page), class: 'dropdown-item'
+          - unless page.wiki?
+            = link_to t('.markdown'), page_path(page, format: :md), class: 'dropdown-item'
           - if can?(:manage, page)
             .dropdown-divider
             = link_to t('global.delete'), page, method: :delete, class: 'dropdown-item text-danger',

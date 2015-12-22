@@ -31,6 +31,7 @@ en:
       update: Update
     page:
       toc: TOC
+      markdown: Markdown
   attachments:
     index:
       file_name: File name

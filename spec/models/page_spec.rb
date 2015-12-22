@@ -43,22 +43,29 @@ RSpec.describe Page, type: :model do
   end
 
   describe '#render' do
-    let(:wiki) { create(:wiki) }
-    let(:page) { create(:page, content: content, parent: wiki) }
-    let(:internal) { create(:page, content: '', parent: wiki) }
+    let!(:wiki) { create(:wiki) }
+    let!(:page) { create(:page, content: content, parent: wiki) }
+    let!(:internal) { create(:page, title: 'internal title', content: 'internal content', parent: wiki) }
     let(:external) { 'http://example.com' }
     let(:content) do
       <<-EOD.strip_heredoc
         [link](url)
         http://test.host/p/#{internal.slug}
+        !![](http://test.host/p/#{internal.slug})
         #{external}
       EOD
     end
     let(:html) do
       <<-EOD.strip_heredoc
         <p><a href="url">link</a><br>
-        <a href="/p/#{internal.slug}" title="http://test.host/p/#{internal.slug}">#{internal.title}</a><br>
-        <a href="/r?u=#{CGI.escape(external)}" title="#{external}" target="_blank">#{external}</a></p>
+        <a href="/p/#{internal.slug}" title="http://test.host/p/#{internal.slug}">#{internal.title}</a></p>
+
+        <h1>
+        <span id="internal-title" class="fragment"></span><a href="#internal-title"><i class="fa fa-link"></i></a><a href="/p/#{internal.slug}" title="/p/#{internal.slug}">#{internal.title}</a>
+        </h1>
+
+        #{internal.render}
+        <p><a href="/r?u=#{CGI.escape(external)}" title="#{external}" target="_blank">#{external}</a></p>
       EOD
     end
     it 'returns rendered html' do

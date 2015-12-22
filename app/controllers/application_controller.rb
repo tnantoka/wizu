@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     def set_wiki
       @wiki = Wiki.find_by!(slug: params[:wiki_id].presence || params[:id])
     end
+
+    def page_params
+      params.require(:page).permit(:title, :content, :parent_id)
+    end
     
     # Locale
     def set_locale

@@ -34,7 +34,7 @@
           data-attachments-path="#{wiki_attachments_path(@wiki)}"
           data-page-id="#{@page.try(:id).presence || @wiki.id}"]
           = f.text_area :content, class: 'form-control', autofocus: @page.title.present?,
-            data: { preview_path: preview_pages_path }
+            data: { preview_path: preview_wiki_path(@wiki) }
       .col-sm-6
         .card
           .card-block

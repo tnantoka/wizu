@@ -154,4 +154,14 @@ RSpec.describe WikisController, type: :controller do
       expect(response).to render_template('wikis/activities')
     end
   end
+
+  describe '#preview' do
+    before do
+      post :preview, { id: wiki.to_param, page: { content: '[link](url)' } }, user_id: user.id
+    end
+    it 'returns rendered html' do
+      json = JSON.parse(response.body)
+      expect(json['html']).to eq("<p><a href=\"url\">link</a></p>\n")
+    end
+  end
 end

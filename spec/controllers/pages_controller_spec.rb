@@ -7,11 +7,21 @@ RSpec.describe PagesController, type: :controller do
   let(:page) { create(:page, user: user, parent: wiki) }
 
   describe '#show' do
-    before do
-      get :show, { id: page.to_param }, user_id: user.id
+    context 'when format is html' do
+      before do
+        get :show, { id: page.to_param }, user_id: user.id
+      end
+      it 'renders show' do
+        expect(response).to render_template('pages/show')
+      end
     end
-    it 'renders show' do
-      expect(response).to render_template('pages/show')
+    context 'when format is md' do
+      before do
+        get :show, { id: page.to_param, format: :md }, user_id: user.id
+      end
+      it 'renders markdown' do
+        expect(response.body).to eq(page.render(format: :md))
+      end
     end
   end
 
@@ -104,16 +114,6 @@ RSpec.describe PagesController, type: :controller do
     end
     it 'redirects to dashboard' do
       expect(response).to redirect_to(wiki_path(wiki))
-    end
-  end
-
-  describe '#preview' do
-    before do
-      post :preview, { page: { content: '[link](url)' } }, user_id: user.id
-    end
-    it 'returns rendered html' do
-      json = JSON.parse(response.body)
-      expect(json['html']).to eq("<p><a href=\"url\">link</a></p>\n")
     end
   end
 

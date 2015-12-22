@@ -31,6 +31,7 @@ ja:
       update: 更新
     page:
       toc: 目次
+      markdown: マークダウン
   attachments:
     index:
       file_name: ファイル名
