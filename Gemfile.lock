@@ -231,6 +231,7 @@ GEM
     rails-assets-jquery.selection (1.0.1)
     rails-assets-mousetrap (1.5.3)
     rails-assets-select2 (4.0.0)
+    rails-assets-tether (1.1.1)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -379,6 +380,7 @@ DEPENDENCIES
   rails-assets-jquery.selection!
   rails-assets-mousetrap!
   rails-assets-select2!
+  rails-assets-tether!
   rails-assets-underscore!
   rails-i18n
   rb-readline

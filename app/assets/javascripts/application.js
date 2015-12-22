@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
+//= require tether
 //= require bootstrap-sprockets
 //= require autosize
 //= require select2

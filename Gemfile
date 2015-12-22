@@ -95,5 +95,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-dropzone'
   gem 'rails-assets-jquery.selection'
   gem 'rails-assets-mousetrap'
+  gem 'rails-assets-tether'
 end
 
