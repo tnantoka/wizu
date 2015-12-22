@@ -52,6 +52,10 @@
   .fa-link {
     display: none;
   }
+  pre {
+    white-space: normal;
+    word-break: break-all !important;
+  }
 }
 
 // Select2
