@@ -8,7 +8,11 @@ class PagesController < ApplicationController
   def show
     redirect_to wiki_path(@page) and return if @page.wiki?
     respond_to do |format|
-      format.html {}
+      format.html {
+        if params[:format].present?
+          render text: @page.render(link_filters: [::Filters::InternalLink]), content_type: 'text/plain'
+        end
+      }
       format.md { render text: @page.render(format: :md) }
     end
   end

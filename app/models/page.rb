@@ -39,15 +39,17 @@ class Page < ActiveRecord::Base
     slug
   end
 
-  def render(format: :html, wiki_id: wiki.try(:id))
+  def render(format: :html, wiki_id: wiki.try(:id), link_filters: [::Filters::InternalLink, ::Filters::ExternalLink])
     processor = Qiita::Markdown::Processor.new(
       wiki_id: wiki_id,
       page_slug: slug,
-      format: format
+      format: format,
+      link_filters: link_filters
     )
     processor.filters.unshift(::Filters::EmbedPage)
-    processor.filters << ::Filters::InternalLink
-    processor.filters << ::Filters::ExternalLink
+    link_filters.each do |filter|
+      processor.filters << filter
+    end
 
     case format
     when :html

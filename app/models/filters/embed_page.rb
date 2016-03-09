@@ -6,10 +6,11 @@ module Filters
         wiki_id = context[:wiki_id]
         page_slug = context[:page_slug]
         format = context[:format]
+        link_filters = context[:link_filters]
         wiki = Wiki.find_by(id: wiki_id)
         page = wiki.pages.find_by(slug: slug) if wiki.present? && page_slug != slug
         return match if page.blank?
-        %|# [#{page.title}](/p/#{page.slug})\n\n#{page.render(format: format, wiki_id: wiki_id)}\n|
+        %|# [#{page.title}](/p/#{page.slug})\n\n#{page.render(format: format, wiki_id: wiki_id, link_filters: link_filters)}\n|
       end
     end
   end

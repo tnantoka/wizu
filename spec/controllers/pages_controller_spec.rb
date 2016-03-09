@@ -7,12 +7,21 @@ RSpec.describe PagesController, type: :controller do
   let(:page) { create(:page, user: user, parent: wiki) }
 
   describe '#show' do
-    context 'when format is html' do
+    context 'when format is default' do
       before do
         get :show, { id: page.to_param }, user_id: user.id
       end
       it 'renders show' do
         expect(response).to render_template('pages/show')
+      end
+    end
+    context 'when format is html' do
+      before do
+        get :show, { id: page.to_param, format: :html }, user_id: user.id
+      end
+      it 'renders show' do
+        expect(response).to_not render_template('pages/show')
+        expect(response.body).to eq(page.render)
       end
     end
     context 'when format is md' do
