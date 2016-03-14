@@ -10,7 +10,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html {
         if params[:format].present?
-          render text: @page.render(link_filters: [::Filters::InternalLink]), content_type: 'text/plain'
+          render text: @page.render(link_filters: [::Filters::InternalLink, ::Filters::RemoveFragment]), content_type: 'text/plain'
         end
       }
       format.md { render text: @page.render(format: :md) }
