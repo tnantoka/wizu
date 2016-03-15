@@ -56,10 +56,18 @@
     white-space: pre-wrap;
     word-break: break-all !important;
   }
+  table {
+    word-break: break-all;
+  }
 }
 
 // Select2
 .select2-container--open .select2-dropdown--above,
 .select2-container--default .select2-selection--single {
   border-radius: 0;
+}
+
+// Diffy
+.diff li {
+  word-break: break-all;
 }

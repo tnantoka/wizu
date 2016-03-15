@@ -4,6 +4,7 @@
   - cur_page = @pages[i]
   - prev_page = @pages[i + 1]
   - user = User.find_by(version.whodunnit)
+  - break if prev_page.nil?
   .card
     .card-header
       ul.list-inline.m-b-0

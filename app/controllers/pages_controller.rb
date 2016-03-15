@@ -55,7 +55,7 @@ class PagesController < ApplicationController
 
     # @pages = [@page] + @versions.to_a.map { |v| v.reify } # Doesn't work?
     @pages = []
-    prev = @page
+    prev = params[:page].to_i > 1 ? @versions.take.reify : @page
     begin
       @pages << prev
     end while prev = prev.previous_version
