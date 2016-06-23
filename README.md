@@ -5,7 +5,7 @@
 [![Test Coverage](https://codeclimate.com/github/tnantoka/wizu/badges/coverage.svg)](https://codeclimate.com/github/tnantoka/wizu/coverage)
 
 Just another personal Wiki with Markdown. Powered by Rails and Bootstrap 4.
-https://wizu.tnantoka.com/
+http://wizu.tnantoka.com/
 
 ## Requirement
 
